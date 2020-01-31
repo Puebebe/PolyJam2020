@@ -19,7 +19,7 @@ public class patternofskarpetka : MonoBehaviour
         skarpetkaRenderer = gameObject.GetComponent<SpriteRenderer>();
         skarpetkaPattern = gameObject.transform.GetChild(0).gameObject;
         var randomPattern = skarpetkaPattern.GetComponent<SpriteRenderer>();
-        randomPattern.sprite = patterns[Random.Range(0,3)];
+        randomPattern.sprite = patterns[Random.Range(0,4)];
         randomPattern.color = new Color(randb, randr, randg);
         skarpetkaRenderer.color = new Color(randr, randg, randb);
     }
