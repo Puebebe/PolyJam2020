@@ -56,5 +56,13 @@ public class InputController : MonoBehaviour
         
     }
 
+    public bool IsPressing
+    {
+        get
+        {
+            return pressing;
+        }
+    }
+
 
 }
