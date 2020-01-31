@@ -1,0 +1,127 @@
+{
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "InGame",
+            "id": "7d47dacc-d3d6-4223-8334-362135b39ee9",
+            "actions": [
+                {
+                    "name": "InputPosition",
+                    "type": "Value",
+                    "id": "ff031c84-e787-4de8-85a4-0117ddd58864",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Press",
+                    "type": "Button",
+                    "id": "70faca7d-5ecc-43f8-86f2-c1b8b8d35810",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DoublePress",
+                    "type": "Button",
+                    "id": "40cb14e4-6b42-4a85-b3b4-eb3c34e196e8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6e31f037-89c3-4065-9d5c-579c478c25a2",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "InputPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a4b2dcfa-c9ae-4543-a37b-8300ed9b6b1d",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "InputPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e18f20a1-5f07-4344-ae95-ccf816ed5427",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a47bdef1-609e-4dd0-8537-a92559f7df85",
+                    "path": "<Touchscreen>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0fa6df82-db19-4457-b064-4697f1e02712",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "DoublePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e417573c-2190-4715-ba71-d9c1466e2544",
+                    "path": "<Touchscreen>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "DoublePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Mouse",
+            "bindingGroup": "Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Touch",
+            "bindingGroup": "Touch",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
