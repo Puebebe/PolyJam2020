@@ -232,7 +232,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1c64233438bbca94c9753134bb370491, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e535fb41be8befb408e5d5ff11a6ede6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -262,7 +262,16 @@ MonoBehaviour:
   - {fileID: 17297156411653284, guid: f840b01e61393884482fa5b8b94b840e, type: 3}
   - {fileID: 17297156411653284, guid: f840b01e61393884482fa5b8b94b840e, type: 3}
   - {fileID: 17297156411653284, guid: f840b01e61393884482fa5b8b94b840e, type: 3}
+  - {fileID: 17297156411653284, guid: f840b01e61393884482fa5b8b94b840e, type: 3}
+  - {fileID: 17297156411653284, guid: f840b01e61393884482fa5b8b94b840e, type: 3}
   SkarpetkasParent: {fileID: 952341740}
+  PileRenderer: {fileID: 1913664549}
+  PileStates:
+  - {fileID: 21300000, guid: a9ea8a04b74b2a1488f1504dd7304713, type: 3}
+  - {fileID: 21300000, guid: e6a4ce3d704c8c44da1d48e9632cbf20, type: 3}
+  - {fileID: 21300000, guid: 28f9b68a92f73af45b23d346d8d142a9, type: 3}
+  - {fileID: 21300000, guid: 40e1d02059b924f42ae7c6f3b00ddf4c, type: 3}
+  - {fileID: 21300000, guid: e535fb41be8befb408e5d5ff11a6ede6, type: 3}
 --- !u!4 &1913664551
 Transform:
   m_ObjectHideFlags: 0

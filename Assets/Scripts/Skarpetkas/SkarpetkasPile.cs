@@ -18,6 +18,7 @@ public class SkarpetkasPile : MonoBehaviour
             SkarpetkaController controller = skarpetka.GetComponent<SkarpetkaController>();
 
             nextSkarpetkaIndex++;
+            UpdateState();
             return controller;
         }
         else
@@ -39,10 +40,31 @@ public class SkarpetkasPile : MonoBehaviour
     {
         Skarpetkas = skarpetkas;
         nextSkarpetkaIndex = 0;
+        UpdateState();
     }
 
     private void UpdateState()
     {
-        Debug.LogError("TODO");
+        float progress = (float)SkarpetkasLeft / (float)Skarpetkas.Length;
+        int chosenIndex = 0;
+        for (int i = 0; i < PileStates.Length; i++)
+        {
+            
+            float scale = ((float)i - 1f) / ((float)PileStates.Length - 1f);
+            Debug.Log("P: " + progress + " S: " + scale);
+            if (progress > scale)
+            {
+                chosenIndex = i;
+            }
+        }
+        if (progress == 0)
+        {
+            PileRenderer.sprite = PileStates[0];
+        }
+        else
+        {
+            PileRenderer.sprite = PileStates[chosenIndex];
+        }
+       
     }
 }
