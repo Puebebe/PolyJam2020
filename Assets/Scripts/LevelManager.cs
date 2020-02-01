@@ -5,7 +5,12 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] Timer timer;
-    public static float BasicTime { private set; get; } = 10;   //TODO change to 60 sec
+
+#if UNITY_EDITOR
+    public static float BasicTime { private set; get; } = 10;
+#else
+    public static float BasicTime { private set; get; } = 60;
+#endif
 
     // Start is called before the first frame update
     public void StartNextLevel()
