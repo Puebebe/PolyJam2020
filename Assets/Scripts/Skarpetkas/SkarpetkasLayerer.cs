@@ -6,11 +6,11 @@ public class SkarpetkasLayerer : MonoBehaviour
 {
     [SerializeField] SkarpetkasFinder Finder;
 
-    public void LayerSkarpetkas(GameObject[] Skarpetkas = null, GameObject PrioritySkarpetka = null)
+    public void LayerSkarpetkas(GameObject[] Skarpetkas = null, GameObject PrioritySkarpetka = null, bool forceUpdate = false)
     {
         if (Skarpetkas == null)
         {
-            Skarpetkas = Finder.FindSkarpetkas();
+            Skarpetkas = Finder.FindSkarpetkas(forceUpdate);
         }
 
         int baseLayer = 0;

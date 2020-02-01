@@ -8,6 +8,7 @@ public class SkarpetkasMover : MonoBehaviour
     [SerializeField] private SkarpetkasLayerer Layerer;
     [SerializeField] private float PickReach;
     [SerializeField] private InputController Input;
+    [SerializeField] private SkarpetkasPile Pile;
     private Vector3 PickOffset = Vector3.zero;
     private GameObject PickedSkarpetka = null;
     private SkarpetkaController PickedController = null;
@@ -18,10 +19,25 @@ public class SkarpetkasMover : MonoBehaviour
         Vector3 MousePos = Input.InputToWorldPosition();
         
         Transform closestSkarpetka = null;
+        SkarpetkaController closestController = null;
 
-        SkarpetkaController closestController = Finder.FindClosestSkarpetka(MousePos, null).GetComponent<SkarpetkaController>();
+        GameObject skarpetka = Finder.FindClosestSkarpetka(MousePos, null);
+        if (skarpetka != null)
+        {
+            closestController = skarpetka.GetComponent<SkarpetkaController>();
+        }
 
-        if (Vector3.Distance(closestController.transform.position, MousePos) <= PickReach)
+        if (Pile.SkarpetkasLeft > 0 && Vector3.Distance(MousePos, Pile.transform.position) <= PickReach)
+        {
+            //Debug.Log("Pile in range and has skarpetkas");
+            if (closestController == null || Vector3.Distance(MousePos, closestController.transform.position) > Vector3.Distance(MousePos, Pile.transform.position))
+            {
+                //Debug.Log("Mover wants skarpetka");
+                closestController = Pile.SpawnSkarpetka(MousePos);
+                closestSkarpetka = closestController.transform;
+            }
+        }
+        else if (closestController != null && Vector3.Distance(closestController.transform.position, MousePos) <= PickReach)
         {
             closestSkarpetka = closestController.transform;
         }
@@ -32,7 +48,7 @@ public class SkarpetkasMover : MonoBehaviour
             PickedController = PickedSkarpetka.GetComponent<SkarpetkaController>();
             PickOffset = closestSkarpetka.position - MousePos;
             Picked = true;
-            Layerer.LayerSkarpetkas(null, PickedSkarpetka);
+            Layerer.LayerSkarpetkas(null, PickedSkarpetka, true);
             StartCoroutine(MoveSkarpetka());
         }
     }
@@ -72,14 +88,13 @@ public class SkarpetkasMover : MonoBehaviour
         //Debug.Log("Mover attempting to unpair");
         Vector3 MousePos = Input.InputToWorldPosition();
         GameObject Closest = Finder.FindClosestSkarpetka(MousePos, null);
-        SkarpetkaController ClosestController = Closest.GetComponent<SkarpetkaController>();
-        if (Vector3.Distance(Closest.transform.position, MousePos) <= PickReach && ClosestController.Pair != null)
+        if (Closest != null)
         {
-            ClosestController.AttemptToUnPair();
-        }
-        else
-        {
-            return;
+            SkarpetkaController ClosestController = Closest.GetComponent<SkarpetkaController>();
+            if (Vector3.Distance(Closest.transform.position, MousePos) <= PickReach && ClosestController.Pair != null)
+            {
+                ClosestController.AttemptToUnPair();
+            }
         }
     }
 
