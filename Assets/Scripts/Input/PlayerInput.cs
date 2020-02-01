@@ -40,7 +40,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""id"": ""40cb14e4-6b42-4a85-b3b4-eb3c34e196e8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""MultiTap""
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -91,7 +91,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0fa6df82-db19-4457-b064-4697f1e02712"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse"",
@@ -103,7 +103,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""e417573c-2190-4715-ba71-d9c1466e2544"",
                     ""path"": ""<Touchscreen>/press"",
-                    ""interactions"": """",
+                    ""interactions"": ""MultiTap"",
                     ""processors"": """",
                     ""groups"": ""Touch"",
                     ""action"": ""DoublePress"",
