@@ -24,7 +24,28 @@ public class SkarpetkasFinder : MonoBehaviour
                 result[i] = SkarpetkasParent.GetChild(i).gameObject;
             }
 
+            Skarpetkas = result;
+
             return result;
         }
+    }
+
+    public GameObject FindClosestSkarpetka(Vector3 position, GameObject ignore)
+    {
+        GameObject closestSkarpetka = null;
+        GameObject[] Skarpetkas = FindSkarpetkas();
+        for (int i = 0; i < Skarpetkas.Length; i++)
+        {
+            if (Skarpetkas[i] != ignore)
+            {
+                Transform skarpetka = Skarpetkas[i].transform;
+                float distance = Vector3.Distance(skarpetka.position, position);
+                if (closestSkarpetka == null || distance < Vector3.Distance(closestSkarpetka.transform.position, position))
+                {
+                    closestSkarpetka = skarpetka.gameObject;
+                }
+            }
+        }
+        return closestSkarpetka;
     }
 }
