@@ -145,6 +145,7 @@ public class SockFeature : MonoBehaviour
         PatternTexture.Apply(true);
         //debug
         debugz = PatternTexture;
+        Debug.Log("debugz applied");
 
 
         //here we should have the patterntexture ready, lets make a full texture now
