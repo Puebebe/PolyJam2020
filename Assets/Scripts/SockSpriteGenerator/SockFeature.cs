@@ -13,6 +13,7 @@ public class SockFeature : MonoBehaviour
     public int SockFeaturePatternAreaW, SockFeaturePatternAreaH;
     public int DEFAULT_PATTERN_SIZE;
     public Color FeatureColor;
+    bool PointmapSet = false;
 
     private void Start()
     {
@@ -22,6 +23,12 @@ public class SockFeature : MonoBehaviour
         */
         //COLOR MUST BE PRESET
         
+    }
+
+    public void SetSockFeaturePointmap(List<Vector2> input)
+    {
+        SockFeaturePointmap = input;
+        PointmapSet = true;
     }
 
     void Awake()
@@ -47,6 +54,7 @@ public class SockFeature : MonoBehaviour
     //function populates list with random 2D points with values 0 - 1, hopefully while considering the sprite size
     public void GeneratePointmap()
     {
+        if (PointmapSet) return;
         switch (SockFeatureType)
         {
             case FeatureType.single:
