@@ -15,7 +15,8 @@ public class SkarpetkasPile : MonoBehaviour
     {
         if (SkarpetkasLeft > 0)
         {
-            GameObject skarpetka = Instantiate(Skarpetkas[nextSkarpetkaIndex],pos,Quaternion.identity,SkarpetkasParent);
+            GameObject skarpetka = Skarpetkas[nextSkarpetkaIndex];
+            skarpetka.SetActive(true);
             SkarpetkaController controller = skarpetka.GetComponent<SkarpetkaController>();
 
             nextSkarpetkaIndex++;
@@ -52,7 +53,7 @@ public class SkarpetkasPile : MonoBehaviour
         {
             
             float scale = ((float)i - 1f) / ((float)PileStates.Length - 1f);
-            Debug.Log("P: " + progress + " S: " + scale);
+            //Debug.Log("P: " + progress + " S: " + scale);
             if (progress > scale)
             {
                 chosenIndex = i;
@@ -71,6 +72,6 @@ public class SkarpetkasPile : MonoBehaviour
 
     void Start()
     {
-        Skarpetkas = sockGenerator.GenerateSockPile(5);
+        InitializePile(sockGenerator.GenerateSockPile(5));
     }
 }
