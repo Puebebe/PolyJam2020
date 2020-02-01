@@ -44,28 +44,14 @@ public class SockGenerator : MonoBehaviour
 
             newSock.AddComponent<SpriteRenderer>();
             SpriteRenderer SockRenderer = newSock.GetComponent<SpriteRenderer>();
+            SockRenderer.sprite = SockShape;
+            SockRenderer.color = Color.white;
 
             newSock.AddComponent<Sock>();
             Sock SockSock = newSock.GetComponent<Sock>();
 
             newSock.AddComponent<SockFeature>();
             SockFeature SockSockFeature = newSock.GetComponent<SockFeature>();
-
-            GameObject SockBase = new GameObject();
-            SockBase.transform.position = new Vector3(0, 0, 0);
-
-            SockBase.AddComponent<SpriteRenderer>();
-            SpriteRenderer SockBaseRenderer = SockBase.GetComponent<SpriteRenderer>();
-
-            SockBase.transform.SetParent(newSock.transform);
-            SockBaseRenderer.sprite = SockShape;
-            SockBaseRenderer.color = Color.white;
- 
-            SockRenderer.sprite = SockShape;
-            SockRenderer.color = Color.white;
-            SockSock.MultiFeature = SockSockFeature;
-            SockSock.SockColor = SockColor;
-            SockSock.SockBaseRenderer = SockBaseRenderer;
             SockSockFeature.FeatureSprite = FeatureSprite;
 
             //TODO maxW i maxH
@@ -78,12 +64,27 @@ public class SockGenerator : MonoBehaviour
 
             SockSockFeature.SetSockFeaturePointmap(SockPattern.points);
             //PatternList[Random.Range(0, Mathf.Max(PatternList.Count, PATTERNS))];
+
+            GameObject SockBase = new GameObject();
+            SockBase.transform.position = new Vector3(0, 0, 0);
+
+            SockBase.AddComponent<SpriteRenderer>();
+            SpriteRenderer SockBaseRenderer = SockBase.GetComponent<SpriteRenderer>();
+
+            SockBase.transform.SetParent(newSock.transform);
+            SockBaseRenderer.sprite = SockShape;
+            SockBaseRenderer.color = Color.white;
+ 
+            SockSock.MultiFeature = SockSockFeature;
+            SockSock.SockColor = SockColor;
+            SockSock.SockBaseRenderer = SockBaseRenderer;
+            result.Add(newSock);
         }
         result.AddRange(result);
         GameObject[] arr = new GameObject[2 * N];
         for (int i = 0; i < 2* N ; i++)
         {
-            int j = Random.Range(0, i);
+            int j = Random.Range(0, 2*N - i);
             arr[i] = result[j];
             result.RemoveAt(j);
         }

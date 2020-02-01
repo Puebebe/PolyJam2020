@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkarpetkasPile : MonoBehaviour
 {
+    [SerializeField] private SockGenerator sockGenerator;
     [SerializeField] private GameObject[] Skarpetkas;
     [SerializeField] private Transform SkarpetkasParent;
     [SerializeField] private SpriteRenderer PileRenderer;
@@ -66,5 +67,10 @@ public class SkarpetkasPile : MonoBehaviour
             PileRenderer.sprite = PileStates[chosenIndex];
         }
        
+    }
+
+    void Start()
+    {
+        Skarpetkas = sockGenerator.GenerateSockPile(5);
     }
 }

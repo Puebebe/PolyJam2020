@@ -33,16 +33,6 @@ public class SockFeature : MonoBehaviour
 
     void Awake()
     {
-        if (FeatureSprite != null)
-        {
-            SockFeatureTexture = FeatureSprite.texture;
-            Debug.Log("SUrprise");
-        }
-        else
-        {
-            SockFeatureTexture = null;
-            Debug.Log("WHO LET THE NULLS OUT? WOOF!");
-        }
         SockFeaturePointmap = new List<Vector2>();
         GeneratePointmap();
         SockFeaturePatternAreaW = SockFeaturePatternAreaH = 0;
@@ -97,6 +87,17 @@ public class SockFeature : MonoBehaviour
     //function returns concatenated texture of size (w x h) from list of randomised points describing where it inserts a preloaded sprite
     public Texture2D GenerateSockTexture(int width, int height)
     {
+        if (FeatureSprite != null)
+        {
+            SockFeatureTexture = FeatureSprite.texture;
+            Debug.Log("SUrprise");
+        }
+        else
+        {
+            SockFeatureTexture = null;
+            Debug.Log("WHO LET THE NULLS OUT? WOOF!");
+        }
+
         Debug.Log("Generating Texture" + width + " x " + height + " with " + SockFeatureTexture.width + " x " + SockFeatureTexture.height);
         //need to make sure default rectangle size (non zero inbetween sprite)
         if (SockFeaturePatternAreaW == 0 || SockFeaturePatternAreaH == 0)
