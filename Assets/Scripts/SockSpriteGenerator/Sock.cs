@@ -10,6 +10,8 @@ public class Sock : MonoBehaviour
     public SockFeature ZigzagFeature;
     public SockFeature SingleFeature;
     public Color SockColor;
+    public SpriteRenderer SockBaseRenderer;
+
     class SockShape
     {
         //here should be a list of pairs: target rectangle mask and feature name?/pointer?
@@ -24,7 +26,10 @@ public class Sock : MonoBehaviour
     void Awake()
     {
         SpriteRenderer SR = GetComponent<SpriteRenderer>();
-        SR.color = SockColor;
+        if (SockBaseRenderer != null)
+        {
+            SockBaseRenderer.color = SockColor;
+        }
         mySprite = SR.sprite;
         //mySprite = null;
     }
