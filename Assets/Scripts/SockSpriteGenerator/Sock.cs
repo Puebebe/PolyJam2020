@@ -6,8 +6,10 @@ public class Sock : MonoBehaviour
 {
     public Sprite mySprite;
     //for now only one feature per sock
-    public SockFeature Feature;
-
+    public SockFeature MultiFeature;
+    public SockFeature ZigzagFeature;
+    public SockFeature SingleFeature;
+    public Color SockColor;
     class SockShape
     {
         //here should be a list of pairs: target rectangle mask and feature name?/pointer?
@@ -19,16 +21,45 @@ public class Sock : MonoBehaviour
         
     }
 
-    void Start()
+    void Awake()
     {
         SpriteRenderer SR = GetComponent<SpriteRenderer>();
+        SR.color = SockColor;
         mySprite = SR.sprite;
         //mySprite = null;
-        if (Feature != null)
+    }
+
+    private void Start()
+    {
+        if (MultiFeature != null)
         {
+            SpriteRenderer SR = GetComponent<SpriteRenderer>();
             Debug.Log("HEY!!!");
             //Feature.debugz = Feature.GenerateSockTexture((int)mySprite.rect.width, (int)mySprite.rect.height);
-            SR.sprite = Sprite.Create(Feature.GenerateSockTexture((int)mySprite.rect.width, (int)mySprite.rect.height), mySprite.rect, new Vector2(0.5f,0.5f));
+            SR.sprite = Sprite.Create(MultiFeature.GenerateSockTexture((int)mySprite.rect.width, (int)mySprite.rect.height), mySprite.rect, new Vector2(0.5f, 0.5f));
         }
+    }
+
+    public bool Equals(Object comparedObject)
+    {
+        Sock comparedSock = (Sock)comparedObject;
+        if (SingleFeature != comparedSock.SingleFeature)
+        {
+            return false;
+        }
+        if (MultiFeature != comparedSock.MultiFeature)
+        {
+            return false;
+        }
+        if (ZigzagFeature != comparedSock.ZigzagFeature)
+        {
+            return false;
+        }
+        if (SockColor != comparedSock.SockColor)
+        {
+            return false;
+        }
+        return true;
+        //TODO
     }
 }

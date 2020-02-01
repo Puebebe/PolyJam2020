@@ -12,6 +12,7 @@ public class SockFeature : MonoBehaviour
     List<Vector2> SockFeaturePointmap;
     public int SockFeaturePatternAreaW, SockFeaturePatternAreaH;
     public int DEFAULT_PATTERN_SIZE;
+    public Color FeatureColor;
 
     private void Start()
     {
@@ -19,6 +20,8 @@ public class SockFeature : MonoBehaviour
         DEFAULT_PATTERN_SIZE = 100;
         FEATURE_NUMBER = 3;
         */
+        //COLOR MUST BE PRESET
+        
     }
 
     void Awake()
@@ -26,12 +29,17 @@ public class SockFeature : MonoBehaviour
         if (FeatureSprite != null)
         {
             SockFeatureTexture = FeatureSprite.texture;
+            Debug.Log("SUrprise");
         }
-        else SockFeatureTexture = null;
+        else
+        {
+            SockFeatureTexture = null;
+            Debug.Log("WHO LET THE NULLS OUT? WOOF!");
+        }
         SockFeaturePointmap = new List<Vector2>();
         GeneratePointmap();
         SockFeaturePatternAreaW = SockFeaturePatternAreaH = 0;
-
+        //GetComponent<SpriteRenderer>().color = FeatureColor;
         //this is default, should add a way to change this ;)
         //SockFeatureType = FeatureType.multi;
     }
@@ -129,13 +137,14 @@ public class SockFeature : MonoBehaviour
                 {
                     //Debug.Log("[" + ((int)(featurePoint.x * SockFeaturePatternAreaW) + i) + "][" + ((int)(featurePoint.y * SockFeaturePatternAreaH) + j) + "] <- [" + i + "][" + j + "](" + SockFeatureTexture.GetPixel(i, j).r + ", " + SockFeatureTexture.GetPixel(i, j).g + ", " + SockFeatureTexture.GetPixel(i, j).b + ", " + SockFeatureTexture.GetPixel(i, j).a + ")");
                     PatternTexture.SetPixel(Mathf.RoundToInt((featurePoint.x * SockFeaturePatternAreaW) + i), Mathf.RoundToInt((featurePoint.y * SockFeaturePatternAreaH) + j),
-                      new Color(SockFeatureTexture.GetPixel(i, j).r, SockFeatureTexture.GetPixel(i, j).g, SockFeatureTexture.GetPixel(i, j).b, SockFeatureTexture.GetPixel(i,j).a));
+                      new Color(FeatureColor.r, FeatureColor.g, FeatureColor.b, SockFeatureTexture.GetPixel(i,j).a));
                 }
             }
         }
 
         PatternTexture.Apply(true);
-
+        //debug
+        debugz = PatternTexture;
 
 
         //here we should have the patterntexture ready, lets make a full texture now
@@ -166,5 +175,50 @@ public class SockFeature : MonoBehaviour
         SockTexture.Apply();
         //here the sockfeaturetexture should be ready, lets return it
         return SockTexture;
+    }
+
+    public bool Equals(Object comparedObject)
+    {
+        SockFeature comparedFeature = (SockFeature)comparedObject;
+        if (comparedFeature.SockFeatureType == SockFeatureType)
+        {
+            switch (SockFeatureType)
+            {
+                case FeatureType.single:
+                    {
+                        //TODO functionality here
+                        return false;
+                    }
+                case FeatureType.multi:
+                    {
+                        if (FeatureColor != comparedFeature.FeatureColor) return false;
+                        if(SockFeaturePointmap.Count == comparedFeature.SockFeaturePointmap.Count)
+                        {
+                            //HOW ARE YOU SORTING??
+                            SockFeaturePointmap.Sort();
+                            comparedFeature.SockFeaturePointmap.Sort();
+                            for (int i = 0; i < SockFeaturePointmap.Count; i++)
+                            {
+                                if (comparedFeature.SockFeaturePointmap[i] != SockFeaturePointmap[i]) return false;
+                            }
+                            if (comparedFeature.FeatureSprite == FeatureSprite)
+                            {
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                case FeatureType.zigzag:
+                    {
+                        //TODO functionality here
+                        return false;
+                    }
+                default:
+                    {
+                        return false;
+                    }
+            }
+        }
+        return false;
     }
 }

@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySprite: {fileID: 0}
   Feature: {fileID: 1995643970}
+  SockColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &80534884
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -497,6 +498,7 @@ MonoBehaviour:
   SockFeaturePatternAreaW: 0
   SockFeaturePatternAreaH: 0
   DEFAULT_PATTERN_SIZE: 100
+  FeatureColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1995643971
 Transform:
   m_ObjectHideFlags: 0
