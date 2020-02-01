@@ -8,9 +8,9 @@ public class SkarpetkasFinder : MonoBehaviour
     private int frame = -1;
     private GameObject[] Skarpetkas;
 
-    public GameObject[] FindSkarpetkas()
+    public GameObject[] FindSkarpetkas(bool forceUpdate = false)
     {
-        if (Time.frameCount == frame)
+        if (!forceUpdate && Time.frameCount == frame)
         {
             return Skarpetkas;
         }
