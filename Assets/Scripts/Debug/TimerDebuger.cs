@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimerDebuger : MonoBehaviour
 {
-    [SerializeField] Timer timer;
+    [SerializeField] TimerOld timer;
 
     private void Start()
     {

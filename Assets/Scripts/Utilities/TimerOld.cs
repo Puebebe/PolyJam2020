@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-public class Timer : MonoBehaviour
+public class TimerOld : MonoBehaviour
 {
     public UnityEvent Tick;
     private float elapsedTime = 0f;
