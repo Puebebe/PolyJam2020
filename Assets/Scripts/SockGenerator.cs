@@ -25,7 +25,7 @@ public class SockGenerator : MonoBehaviour
         //List<>
         //number of unique patterns
         int PATTERNS = 1 + (int)N / 2;
-        int FEATURES = 1 + (int)Mathf.Pow(N,1 / 3);
+        int FEATURES = 1 + (int)Mathf.Pow(N, 1 / 3);
         int COLORS = 1 + (int)Mathf.Pow(N, 1 / 3);
         int SHAPES = 1 + (int)Mathf.Pow(N, 1 / 3);
 
@@ -46,6 +46,8 @@ public class SockGenerator : MonoBehaviour
             SpriteRenderer SockRenderer = newSock.GetComponent<SpriteRenderer>();
             SockRenderer.sprite = SockShape;
             SockRenderer.color = Color.white;
+            SockRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            SockRenderer.sortingOrder = 1;
 
             newSock.AddComponent<Sock>();
             Sock SockSock = newSock.GetComponent<Sock>();
@@ -74,17 +76,26 @@ public class SockGenerator : MonoBehaviour
             SockBase.transform.SetParent(newSock.transform);
             SockBaseRenderer.sprite = SockShape;
             SockBaseRenderer.color = Color.white;
- 
+
             SockSock.MultiFeature = SockSockFeature;
             SockSock.SockColor = SockColor;
             SockSock.SockBaseRenderer = SockBaseRenderer;
+
+            GameObject newSpriteMask = new GameObject();
+            newSpriteMask.AddComponent<SpriteMask>();
+            newSpriteMask.transform.SetParent(newSock.transform);
+            newSpriteMask.GetComponent<SpriteMask>().sprite = SockShape;
+
+            GameObject newPairedSock = Instantiate(newSock);
+
             result.Add(newSock);
+            result.Add(newPairedSock);
         }
-        result.AddRange(result);
+
         GameObject[] arr = new GameObject[2 * N];
-        for (int i = 0; i < 2* N ; i++)
+        for (int i = 0; i < 2 * N; i++)
         {
-            int j = Random.Range(0, 2*N - i);
+            int j = Random.Range(0, 2 * N - i);
             arr[i] = result[j];
             result.RemoveAt(j);
         }
