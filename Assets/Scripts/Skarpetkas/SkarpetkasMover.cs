@@ -7,12 +7,15 @@ public class SkarpetkasMover : MonoBehaviour
     [SerializeField] private SkarpetkasFinder Finder;
     [SerializeField] private SkarpetkasLayerer Layerer;
     [SerializeField] private float PickReach;
+    [SerializeField] private float InsertReach;
     [SerializeField] private InputController Input;
     [SerializeField] private SkarpetkasPile Pile;
+    [SerializeField] private Transform BasketPosition;
     private Vector3 PickOffset = Vector3.zero;
     private GameObject PickedSkarpetka = null;
     private SkarpetkaController PickedController = null;
     private bool Picked = false;
+    private Vector3 StartPos;
 
     public void AttemptToPickSkarpetka()
     {
@@ -44,6 +47,7 @@ public class SkarpetkasMover : MonoBehaviour
 
         if (closestSkarpetka != null)
         {
+            StartPos = closestSkarpetka.position;
             PickedSkarpetka = closestSkarpetka.gameObject;
             PickedController = PickedSkarpetka.GetComponent<SkarpetkaController>();
             PickOffset = closestSkarpetka.position - MousePos;
@@ -56,9 +60,27 @@ public class SkarpetkasMover : MonoBehaviour
     public void DropSkarpetka()
     {
         Picked = false;
-        if (PickedController != null && PickedController.Pair == null)
+        if (PickedController != null)
         {
-            PickedController.AttemptPairing();
+            if (Vector3.Distance(PickedController.transform.position, BasketPosition.position) <= InsertReach)
+            {
+                if (PickedController.Pair == null)
+                {
+                    PickedController.MoveTo(StartPos);
+                }
+                else
+                {
+                    InsertIntoBasket(PickedController);
+                }
+            }
+            else
+            {
+                if (PickedController.Pair == null)
+                {
+                    PickedController.AttemptPairing();
+                }
+            }
+            
         }
         PickedSkarpetka = null;
         PickedController = null;
@@ -95,6 +117,26 @@ public class SkarpetkasMover : MonoBehaviour
             {
                 ClosestController.AttemptToUnPair();
             }
+        }
+    }
+
+    private void InsertIntoBasket(SkarpetkaController skarpetka)
+    {
+        if (skarpetka.Pair == null)
+        {
+            Debug.LogError("WTF?");
+            return;
+        }
+        patternofskarpetka FirstSkarpetka = skarpetka.GetComponent<patternofskarpetka>();
+        patternofskarpetka SecondSkarpetka = skarpetka.Pair.GetComponent<patternofskarpetka>();
+
+        if (FirstSkarpetka.Equals(SecondSkarpetka))
+        {
+            
+        }
+        else
+        {
+            skarpetka.MoveTo(StartPos);
         }
     }
 
