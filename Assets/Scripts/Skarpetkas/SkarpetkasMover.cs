@@ -10,29 +10,29 @@ public class SkarpetkasMover : MonoBehaviour
     [SerializeField] private InputController Input;
     private Vector3 PickOffset = Vector3.zero;
     private GameObject PickedSkarpetka = null;
+    private SkarpetkaController PickedController = null;
     private bool Picked = false;
 
     public void AttemptToPickSkarpetka()
     {
         Vector3 MousePos = Input.InputToWorldPosition();
+        
         Transform closestSkarpetka = null;
-        GameObject[] Skarpetkas = Finder.FindSkarpetkas();
-        for (int i = 0; i < Skarpetkas.Length; i++)
+
+        SkarpetkaController closestController = Finder.FindClosestSkarpetka(MousePos, null).GetComponent<SkarpetkaController>();
+
+        if (Vector3.Distance(closestController.transform.position, MousePos) <= PickReach)
         {
-            Transform skarpetka = Skarpetkas[i].transform;
-            float distance = Vector3.Distance(skarpetka.position, MousePos);
-            if (distance <= PickReach && ( closestSkarpetka == null || distance < Vector3.Distance(closestSkarpetka.position, MousePos) ))
-            {
-                closestSkarpetka = skarpetka;
-            }
+            closestSkarpetka = closestController.transform;
         }
 
         if (closestSkarpetka != null)
         {
             PickedSkarpetka = closestSkarpetka.gameObject;
+            PickedController = PickedSkarpetka.GetComponent<SkarpetkaController>();
             PickOffset = closestSkarpetka.position - MousePos;
             Picked = true;
-            Layerer.LayerSkarpetkas(Skarpetkas, PickedSkarpetka);
+            Layerer.LayerSkarpetkas(null, PickedSkarpetka);
             StartCoroutine(MoveSkarpetka());
         }
     }
@@ -40,22 +40,47 @@ public class SkarpetkasMover : MonoBehaviour
     public void DropSkarpetka()
     {
         Picked = false;
+        if (PickedController != null && PickedController.Pair == null)
+        {
+            PickedController.AttemptPairing();
+        }
         PickedSkarpetka = null;
+        PickedController = null;
     }
 
     private IEnumerator MoveSkarpetka()
     {
         while (Picked)
         {
-            PickedSkarpetka.transform.position = (Vector3)Input.InputToWorldPosition() + PickOffset;
+            PickedController.MoveTo((Vector3)Input.InputToWorldPosition() + PickOffset);
             yield return new WaitForEndOfFrame();
         }
-        PickedSkarpetka = null;
     }
 
     public GameObject GetPickedSkarpetka()
     {
         return PickedSkarpetka;
+    }
+
+    public SkarpetkaController GetPickedController()
+    {
+        return PickedController;
+    }
+
+    public void AttemptToUnPairSkarpetkas()
+    {
+        //Debug.Log("Mover attempting to unpair");
+        Vector3 MousePos = Input.InputToWorldPosition();
+        GameObject Closest = Finder.FindClosestSkarpetka(MousePos, null);
+        SkarpetkaController ClosestController = Closest.GetComponent<SkarpetkaController>();
+        if (Vector3.Distance(Closest.transform.position, MousePos) <= PickReach && ClosestController.Pair != null)
+        {
+            ClosestController.AttemptToUnPair();
+        }
+        else
+        {
+            return;
+        }
     }
 
 }
