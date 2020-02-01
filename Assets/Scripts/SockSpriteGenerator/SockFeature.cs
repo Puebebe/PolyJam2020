@@ -13,7 +13,7 @@ public class SockFeature : MonoBehaviour
     public int SockFeaturePatternAreaW, SockFeaturePatternAreaH;
     public int DEFAULT_PATTERN_SIZE;
 
-    void Start()
+    void Awake()
     {
         if (FeatureSprite != null)
         {
@@ -81,7 +81,7 @@ public class SockFeature : MonoBehaviour
         {
             //TODO default value 50, plz check this and adjust!!!
             SockFeaturePatternAreaW = SockFeaturePatternAreaH = DEFAULT_PATTERN_SIZE;
-            Debug.Log("Default pattern area set");
+            Debug.Log("Default pattern area set: " + DEFAULT_PATTERN_SIZE);
         }
         //TODO test if patternTexture is not empty
         Texture2D PatternTexture = new Texture2D(SockFeaturePatternAreaW + SockFeatureTexture.width, SockFeaturePatternAreaH + SockFeatureTexture.height);
@@ -90,7 +90,7 @@ public class SockFeature : MonoBehaviour
         {
             for (int j = 0; j < PatternTexture.height; j++)
             {
-                PatternTexture.SetPixel(i, j, new Color(0, 0, 0, 0));
+                PatternTexture.SetPixel(i, j, Color.clear);
             }
         }
         //what happenned here? plz check if this does not generate weird stuff :c
@@ -122,12 +122,13 @@ public class SockFeature : MonoBehaviour
                 for (int j = 0; j < SockFeatureTexture.height; j++)
                 {
                     //Debug.Log("[" + ((int)(featurePoint.x * SockFeaturePatternAreaW) + i) + "][" + ((int)(featurePoint.y * SockFeaturePatternAreaH) + j) + "] <- [" + i + "][" + j + "](" + SockFeatureTexture.GetPixel(i, j).r + ", " + SockFeatureTexture.GetPixel(i, j).g + ", " + SockFeatureTexture.GetPixel(i, j).b + ", " + SockFeatureTexture.GetPixel(i, j).a + ")");
-                    PatternTexture.SetPixel((int)(featurePoint.x * SockFeaturePatternAreaW) + i, (int)(featurePoint.y * SockFeaturePatternAreaH) + j,new Color(SockFeatureTexture.GetPixel(i, j).r, SockFeatureTexture.GetPixel(i, j).g, SockFeatureTexture.GetPixel(i, j).b));
+                    PatternTexture.SetPixel(Mathf.RoundToInt((featurePoint.x * SockFeaturePatternAreaW) + i), Mathf.RoundToInt((featurePoint.y * SockFeaturePatternAreaH) + j),
+                      new Color(SockFeatureTexture.GetPixel(i, j).r, SockFeatureTexture.GetPixel(i, j).g, SockFeatureTexture.GetPixel(i, j).b, SockFeatureTexture.GetPixel(i,j).a));
                 }
             }
         }
 
-        PatternTexture.Apply();
+        PatternTexture.Apply(true);
 
 
 
@@ -139,7 +140,7 @@ public class SockFeature : MonoBehaviour
         {
             for (int j = 0; j < SockTexture.height; j++)
             {
-                PatternTexture.SetPixel(i, j, new Color(0, 0, 0, 0));
+                SockTexture.SetPixel(i, j, Color.clear);
             }
         }
         //fill with featurepattern
@@ -147,7 +148,13 @@ public class SockFeature : MonoBehaviour
         {
             for (int j = 0; j < SockTexture.height; j++)
             {
-                if (PatternTexture.GetPixel(i % PatternTexture.width, j % PatternTexture.height).a > 0) SockTexture.SetPixel(i, j, PatternTexture.GetPixel(i % PatternTexture.width, j % PatternTexture.height));
+                if (PatternTexture.GetPixel(i % PatternTexture.width, j % PatternTexture.height).a > 0)
+                {
+                    Color col = PatternTexture.GetPixel(i % PatternTexture.width, j % PatternTexture.height);
+                    SockTexture.SetPixel(i, j, col);
+                    //Debug.Log("col at " + i + " - " + j +" : " + col);
+                }
+
             }
         }
         SockTexture.Apply();

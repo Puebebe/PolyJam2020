@@ -21,12 +21,14 @@ public class Sock : MonoBehaviour
 
     void Start()
     {
-        mySprite = GetComponent<SpriteRenderer>().sprite;
+        SpriteRenderer SR = GetComponent<SpriteRenderer>();
+        mySprite = SR.sprite;
+        //mySprite = null;
         if (Feature != null)
         {
             Debug.Log("HEY!!!");
             //Feature.debugz = Feature.GenerateSockTexture((int)mySprite.rect.width, (int)mySprite.rect.height);
-            mySprite = Sprite.Create(Feature.GenerateSockTexture((int)mySprite.rect.width, (int)mySprite.rect.height), mySprite.rect, new Vector2(0, 0));
+            SR.sprite = Sprite.Create(Feature.GenerateSockTexture((int)mySprite.rect.width, (int)mySprite.rect.height), mySprite.rect, new Vector2(0.5f,0.5f));
         }
     }
 }
