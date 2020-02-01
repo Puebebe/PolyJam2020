@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7099284869729962732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7099284869729962730}
+  - component: {fileID: 7099284869729962731}
+  m_Layer: 0
+  m_Name: Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7099284869729962730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7099284869729962732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7099284869729962731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7099284869729962732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f09638fab03b9841952918c21edca46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PatternList:
+  - width: 0
+    height: 0
+    maxW: 0
+    maxH: 0
+    points:
+    - {x: 0.5, y: 0.5}
+  - width: 0
+    height: 0
+    maxW: 0
+    maxH: 0
+    points:
+    - {x: 0.33, y: 0.5}
+    - {x: 0.66, y: 0.5}
+  - width: 0
+    height: 0
+    maxW: 0
+    maxH: 0
+    points:
+    - {x: 0.25, y: 0.25}
+    - {x: 0.25, y: 0.75}
+    - {x: 0.75, y: 0.25}
+    - {x: 0.75, y: 0.75}
+    - {x: 0.5, y: 0.5}
+  FeatureList:
+  - {fileID: 21300000, guid: 432607e77066e844fa0e5cf274347444, type: 3}
+  - {fileID: 21300000, guid: 01dde61d24b003c4389e11f5dcdcc707, type: 3}
+  - {fileID: 21300000, guid: 9e385b15ee546671ea55011d1d4b93ec, type: 3}
+  ColorList:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0.08276451, g: 1, b: 0, a: 0}
+  - {r: 0, g: 0.01834917, b: 1, a: 0}
+  SockBaseList:
+  - {fileID: 21300000, guid: 7a71468627e0aa155be2cb65a86ae973, type: 3}
