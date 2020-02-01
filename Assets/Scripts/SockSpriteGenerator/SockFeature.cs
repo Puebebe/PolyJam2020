@@ -6,12 +6,20 @@ public class SockFeature : MonoBehaviour
 {
     public Sprite FeatureSprite;
     Texture2D SockFeatureTexture;
-    //
+    public int FEATURE_NUMBER;
     public Texture2D debugz;
     public FeatureType SockFeatureType;
     List<Vector2> SockFeaturePointmap;
     public int SockFeaturePatternAreaW, SockFeaturePatternAreaH;
     public int DEFAULT_PATTERN_SIZE;
+
+    private void Start()
+    {
+        /*
+        DEFAULT_PATTERN_SIZE = 100;
+        FEATURE_NUMBER = 3;
+        */
+    }
 
     void Awake()
     {
@@ -23,7 +31,6 @@ public class SockFeature : MonoBehaviour
         SockFeaturePointmap = new List<Vector2>();
         GeneratePointmap();
         SockFeaturePatternAreaW = SockFeaturePatternAreaH = 0;
-        DEFAULT_PATTERN_SIZE = 100;
 
         //this is default, should add a way to change this ;)
         //SockFeatureType = FeatureType.multi;
@@ -39,13 +46,12 @@ public class SockFeature : MonoBehaviour
                     Debug.Log("Single FeatureType");
                     //default single behaviour
                     SockFeaturePointmap.Add(new Vector2(1f, 1f));
-
                     break;
                 }
             case FeatureType.multi:
                 {
                     //TODO calculate and substitute the 3 value!!!
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < FEATURE_NUMBER; i++)
                     {
                         //Debug.Log("Multi FeatureType");
                         //default random behaviour without constraints

@@ -491,11 +491,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FeatureSprite: {fileID: 21300000, guid: 01dde61d24b003c4389e11f5dcdcc707, type: 3}
+  FEATURE_NUMBER: 1
   debugz: {fileID: 0}
   SockFeatureType: 1
   SockFeaturePatternAreaW: 0
   SockFeaturePatternAreaH: 0
-  DEFAULT_PATTERN_SIZE: 0
+  DEFAULT_PATTERN_SIZE: 100
 --- !u!4 &1995643971
 Transform:
   m_ObjectHideFlags: 0
