@@ -19,6 +19,7 @@ public class SockGenerator : MonoBehaviour
     //TODO make sure alpha levels are solid
     public List<Color> ColorList = new List<Color>();
     public List<Sprite> SockBaseList = new List<Sprite>();
+    public GameObject SockParent;
     public GameObject[] GenerateSockPile(int N)
     {
         List<GameObject> result = new List<GameObject>();
@@ -87,6 +88,9 @@ public class SockGenerator : MonoBehaviour
             newSpriteMask.GetComponent<SpriteMask>().sprite = SockShape;
 
             GameObject newPairedSock = Instantiate(newSock);
+
+            newSock.transform.SetParent(SockParent.transform);
+            newPairedSock.transform.SetParent(SockParent.transform);
 
             result.Add(newSock);
             result.Add(newPairedSock);
