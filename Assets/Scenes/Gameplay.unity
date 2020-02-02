@@ -285,6 +285,11 @@ PrefabInstance:
       propertyPath: image
       value: 
       objectReference: {fileID: 1778787059}
+    - target: {fileID: 6540419865445380860, guid: 99aea4dcab210334493421487cf06930,
+        type: 3}
+      propertyPath: LETSGETWILD
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6540419865445380861, guid: 99aea4dcab210334493421487cf06930,
         type: 3}
       propertyPath: m_LocalPosition.x

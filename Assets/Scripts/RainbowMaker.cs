@@ -30,6 +30,7 @@ public class RainbowMaker : MonoBehaviour
     {
         if (LETSGETWILD)
         {
+            variationFactor = 1;
             Hue += iAmSpeed * HueVelocity * dt;
             if (Hue > 1) Hue -= 1;
             if (Hue < 0) Hue += 1;
