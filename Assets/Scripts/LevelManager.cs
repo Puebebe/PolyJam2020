@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] Timer timer;
+
+    public UnityEvent RanOutOfTime;
 
     private bool levelWasFailed = false;
 
@@ -47,11 +50,7 @@ public class LevelManager : MonoBehaviour
             levelWasFailed = true;
             timer.isOn = false;
             GameState.remainingLifes--;
-            
-            if (GameState.remainingLifes <= 0)
-            {
-                //Game over
-            }
+            RanOutOfTime.Invoke();
         }
     }
 }

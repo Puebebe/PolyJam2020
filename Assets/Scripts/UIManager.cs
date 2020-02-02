@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Vector3 ParticlesMidPoint;
     [SerializeField] private Vector3 ParticlesEndPos;
     [SerializeField] private Camera Cam;
+    [SerializeField] private GameObject[] LifeSocks;
+    [SerializeField] private GameObject BigLifeSockPrefab;
+    [SerializeField] private SkarpetkasFinder Finder;
 
     // Update is called once per frame
     void Update()
@@ -49,5 +52,37 @@ public class UIManager : MonoBehaviour
         float height = (input.y / 1080f) * Screen.height;
 
         return new Vector3(width, height, input.z);
+    }
+
+    public void WrongInsertion()
+    {
+        GameObject FirstLifeSock = LifeSocks[GameState.remainingLifes];
+        GameObject SecondLifeSock = LifeSocks[GameState.remainingLifes + 1];
+        Vector3 FirstSockStart = Cam.ScreenToWorldPoint(CanvasToResolution(FirstLifeSock.transform.position));
+        Vector3 SecondSockStart = Cam.ScreenToWorldPoint(CanvasToResolution(SecondLifeSock.transform.position));
+
+        GameObject FirstBigLifeSock = Instantiate(BigLifeSockPrefab, FirstSockStart,Quaternion.identity,this.transform);
+        GameObject SecondBigSock = Instantiate(BigLifeSockPrefab, SecondSockStart, Quaternion.identity, this.transform);
+
+        GameObject[] Skarpetkas = Finder.FindSkarpetkas(true);
+
+        RefreshLifeSocks();
+    }
+
+    public void RefreshLifeSocks()
+    {
+        ClearLifeSocks();
+        for (int i = 0; i < LifeSocks.Length && i < GameState.remainingLifes; i++)
+        {
+            LifeSocks[i].SetActive(true);
+        }
+    }
+
+    private void ClearLifeSocks()
+    {
+        for (int i = 0; i < LifeSocks.Length; i++)
+        {
+            LifeSocks[i].SetActive(false);
+        }
     }
 }
