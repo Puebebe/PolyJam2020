@@ -7,6 +7,7 @@ public class GameStateManager : MonoBehaviour
 {
     public GameObject Visuals;
     public GameObject TimeUpCanvas;
+    public GameObject VictoryCanvas;
     public GameObject GameOverCanvas;
     //public Button TimeUpRetry;
     //public Button TimeUpMenu;
@@ -19,6 +20,12 @@ public class GameStateManager : MonoBehaviour
     private void Awake()
     {
         
+    }
+
+    public void victory()
+    {
+        Visuals.SetActive(false);
+        VictoryCanvas.SetActive(true);
     }
 
     public void GameOver()
@@ -35,6 +42,14 @@ public class GameStateManager : MonoBehaviour
     public void TimeUpRetryPress()
     {
         TimeUpCanvas.SetActive(false);
+        Visuals.SetActive(true);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ButtonVictoryNext()
+    {
+        GameState.levelCompleted++;
+        VictoryCanvas.SetActive(false);
         Visuals.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
