@@ -5,7 +5,7 @@ using UnityEngine;
 public class SockFeature : MonoBehaviour
 {
     public Sprite FeatureSprite;
-    Texture2D SockFeatureTexture;
+    [SerializeField] Texture2D SockFeatureTexture;
     public int FEATURE_NUMBER;
     public Texture2D debugz;
     public FeatureType SockFeatureType;
@@ -14,6 +14,7 @@ public class SockFeature : MonoBehaviour
     public int DEFAULT_PATTERN_SIZE;
     public Color FeatureColor;
     bool PointmapSet = false;
+    private static bool DebugOneSock = false;
 
     private void Start()
     {
@@ -85,8 +86,10 @@ public class SockFeature : MonoBehaviour
         }
     }
     //function returns concatenated texture of size (w x h) from list of randomised points describing where it inserts a preloaded sprite
-    public Texture2D GenerateSockTexture(int width, int height)
+    public Texture2D GenerateSockTexture(Sprite mask)
     {
+        int width = Mathf.RoundToInt(mask.rect.width);
+        int height = Mathf.RoundToInt(mask.rect.height);
         if (FeatureSprite != null)
         {
             SockFeatureTexture = FeatureSprite.texture;
@@ -145,13 +148,23 @@ public class SockFeature : MonoBehaviour
                 for (int j = 0; j < SockFeatureTexture.height; j++)
                 {
                     //Debug.Log("[" + ((int)(featurePoint.x * SockFeaturePatternAreaW) + i) + "][" + ((int)(featurePoint.y * SockFeaturePatternAreaH) + j) + "] <- [" + i + "][" + j + "](" + SockFeatureTexture.GetPixel(i, j).r + ", " + SockFeatureTexture.GetPixel(i, j).g + ", " + SockFeatureTexture.GetPixel(i, j).b + ", " + SockFeatureTexture.GetPixel(i, j).a + ")");
-                    PatternTexture.SetPixel(Mathf.RoundToInt((featurePoint.x * SockFeaturePatternAreaW) + i), Mathf.RoundToInt((featurePoint.y * SockFeaturePatternAreaH) + j),
-                      new Color(FeatureColor.r, FeatureColor.g, FeatureColor.b, SockFeatureTexture.GetPixel(i,j).a));
+                    PatternTexture.SetPixel(
+                        Mathf.RoundToInt((featurePoint.x * SockFeaturePatternAreaW) + i), 
+                        Mathf.RoundToInt((featurePoint.y * SockFeaturePatternAreaH) + j),
+                        new Color(FeatureColor.r, FeatureColor.g, FeatureColor.b,
+                        SockFeatureTexture.GetPixel(i,j).a)
+                        );
+                    if (DebugOneSock)
+                    {
+                        Debug.Log("Aplha at x: " + i + " y: " + j + " equals: " + SockFeatureTexture.GetPixel(i,j).a) ;
+                    }
                 }
             }
-        }
 
-        PatternTexture.Apply(true);
+        }
+        
+
+        PatternTexture.Apply();
         //debug
         debugz = PatternTexture;
         Debug.Log("debugz applied");
@@ -168,12 +181,15 @@ public class SockFeature : MonoBehaviour
                 SockTexture.SetPixel(i, j, Color.clear);
             }
         }
+
         //fill with featurepattern
         for (int i = 0; i < SockTexture.width; i++)
         {
             for (int j = 0; j < SockTexture.height; j++)
             {
-                if (PatternTexture.GetPixel(i % PatternTexture.width, j % PatternTexture.height).a > 0)
+                //Debug.Log("Mask Aplha at " + i + " : " + j + " = " + Mask.GetPixel(i,j).a);
+                if (PatternTexture.GetPixel(i % PatternTexture.width, j % PatternTexture.height).a > 0f
+                    && mask.texture.GetPixel(i,j).a > 0f)
                 {
                     Color col = PatternTexture.GetPixel(i % PatternTexture.width, j % PatternTexture.height);
                     SockTexture.SetPixel(i, j, col);

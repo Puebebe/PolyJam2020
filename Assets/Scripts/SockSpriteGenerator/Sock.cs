@@ -11,6 +11,7 @@ public class Sock : MonoBehaviour
     public SockFeature SingleFeature;
     public Color SockColor;
     public SpriteRenderer SockBaseRenderer;
+    private SpriteRenderer SR;
 
     class SockShape
     {
@@ -25,7 +26,7 @@ public class Sock : MonoBehaviour
 
     void Awake()
     {
-        SpriteRenderer SR = GetComponent<SpriteRenderer>();
+        SR = GetComponent<SpriteRenderer>();
         if (SockBaseRenderer != null)
         {
             SockBaseRenderer.color = SockColor;
@@ -38,10 +39,12 @@ public class Sock : MonoBehaviour
     {
         if (MultiFeature != null)
         {
-            SpriteRenderer SR = GetComponent<SpriteRenderer>();
+            //SpriteRenderer SR = GetComponent<SpriteRenderer>(); // this is in Awake()
             Debug.Log("HEY!!!");
             //Feature.debugz = Feature.GenerateSockTexture((int)mySprite.rect.width, (int)mySprite.rect.height);
-            SR.sprite = Sprite.Create(MultiFeature.GenerateSockTexture((int)mySprite.rect.width, (int)mySprite.rect.height), mySprite.rect, new Vector2(0.5f, 0.5f));
+            SR.sprite = Sprite.Create(MultiFeature.GenerateSockTexture(mySprite), 
+                mySprite.rect, 
+                new Vector2(0.5f, 0.5f));
         }
     }
 
