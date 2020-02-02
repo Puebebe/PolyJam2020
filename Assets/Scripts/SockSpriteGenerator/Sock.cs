@@ -51,22 +51,23 @@ public class Sock : MonoBehaviour
     public bool Equals(Object comparedObject)
     {
         Sock comparedSock = (Sock)comparedObject;
-        if (SingleFeature != comparedSock.SingleFeature)
-        {
-            return false;
-        }
-        if (MultiFeature != comparedSock.MultiFeature)
-        {
-            return false;
-        }
-        if (ZigzagFeature != comparedSock.ZigzagFeature)
-        {
-            return false;
-        }
         if (SockColor != comparedSock.SockColor)
         {
             return false;
         }
+        if (!SingleFeature?.Equals(comparedSock.SingleFeature) ?? false)
+        {
+            return false;
+        }
+        if (!MultiFeature?.Equals(comparedSock.MultiFeature) ?? false)
+        {
+            return false;
+        }
+        if (!ZigzagFeature?.Equals(comparedSock.ZigzagFeature) ?? false)
+        {
+            return false;
+        }
+        
         return true;
         //TODO
     }

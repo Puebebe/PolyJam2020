@@ -120,23 +120,24 @@ public class SkarpetkasMover : MonoBehaviour
         }
     }
 
-    private void InsertIntoBasket(SkarpetkaController skarpetka)
+    private void InsertIntoBasket(SkarpetkaController sock)
     {
-        if (skarpetka.Pair == null)
+        if (sock.Pair == null)
         {
             Debug.LogError("WTF?");
             return;
         }
-        patternofskarpetka FirstSkarpetka = skarpetka.GetComponent<patternofskarpetka>();
-        patternofskarpetka SecondSkarpetka = skarpetka.Pair.GetComponent<patternofskarpetka>();
 
-        if (FirstSkarpetka.Equals(SecondSkarpetka))
+        Sock firstSock = sock.GetComponent<Sock>();
+        Sock secondSock = sock.Pair.GetComponent<Sock>();
+
+        if (firstSock.Equals(secondSock))
         {
-            
+            Debug.Log("gites");
         }
         else
         {
-            skarpetka.MoveTo(StartPos);
+            sock.MoveTo(StartPos);
         }
     }
 
