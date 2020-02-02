@@ -47,5 +47,6 @@ MonoBehaviour:
   timerUI: {fileID: 0}
   Particles: {fileID: 0}
   ParticlesStartPos: {x: 1744, y: 1000, z: 0}
+  ParticlesMidPoint: {x: 1744, y: 920, z: 0}
   ParticlesEndPos: {x: 1682, y: 841, z: 0}
   Cam: {fileID: 0}
