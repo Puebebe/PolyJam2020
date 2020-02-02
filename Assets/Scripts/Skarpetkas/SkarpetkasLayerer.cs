@@ -8,10 +8,15 @@ public class SkarpetkasLayerer : MonoBehaviour
 
     public void LayerSkarpetkas(GameObject[] Skarpetkas = null, GameObject PrioritySkarpetka = null, bool forceUpdate = false)
     {
+
+        
+
         if (Skarpetkas == null)
         {
             Skarpetkas = Finder.FindSkarpetkas(forceUpdate);
         }
+
+        Debug.Log("Found: " + Skarpetkas.Length + " skarpetkas");
 
         int baseLayer = 0;
         int priorityLayer = 0;
@@ -25,7 +30,7 @@ public class SkarpetkasLayerer : MonoBehaviour
         for (int i = 0; i < Skarpetkas.Length; i++)
         {
             SpriteRenderer[] renderers = Skarpetkas[i].GetComponentsInChildren<SpriteRenderer>();
-            for (int j = renderers.Length-1; j > -1; j--)
+            for (int j = 0; j < renderers.Length; j++)
             {
                 if (Skarpetkas[i] != PrioritySkarpetka)
                 {

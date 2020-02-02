@@ -919,6 +919,21 @@ PrefabInstance:
       propertyPath: SockParent
       value: 
       objectReference: {fileID: 64789305}
+    - target: {fileID: 7099284869729962731, guid: 1750a619f733a42438add622930b9e3f,
+        type: 3}
+      propertyPath: ColorList.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7099284869729962731, guid: 1750a619f733a42438add622930b9e3f,
+        type: 3}
+      propertyPath: ColorList.Array.data[1].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7099284869729962731, guid: 1750a619f733a42438add622930b9e3f,
+        type: 3}
+      propertyPath: ColorList.Array.data[2].a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7099284869729962732, guid: 1750a619f733a42438add622930b9e3f,
         type: 3}
       propertyPath: m_Name

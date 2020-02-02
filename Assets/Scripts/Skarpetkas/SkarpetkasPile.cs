@@ -16,6 +16,7 @@ public class SkarpetkasPile : MonoBehaviour
         if (SkarpetkasLeft > 0)
         {
             GameObject skarpetka = Skarpetkas[nextSkarpetkaIndex];
+            skarpetka.transform.position = pos;
             skarpetka.SetActive(true);
             SkarpetkaController controller = skarpetka.GetComponent<SkarpetkaController>();
 

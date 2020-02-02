@@ -57,6 +57,8 @@ public class SockGenerator : MonoBehaviour
             SockFeature SockSockFeature = newSock.GetComponent<SockFeature>();
             SockSockFeature.FeatureSprite = FeatureSprite;
 
+            newSock.AddComponent<SkarpetkaController>();
+
             //TODO maxW i maxH
             SockSockFeature.FEATURE_NUMBER = 1;
             //TODO kiedys to sie losuje
