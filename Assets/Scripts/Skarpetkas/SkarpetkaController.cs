@@ -34,7 +34,7 @@ public class SkarpetkaController : MonoBehaviour
                 if (Vector3.Distance(Skarpetkas[i].transform.position, this.gameObject.transform.position) <= PairingDistance)
                 {
                     SkarpetkaController other = Skarpetkas[i].GetComponent<SkarpetkaController>();
-                    if (other.Pair == null && other != this)
+                    if (other.Pair == null && other != this && Pair == null)
                     {
                         this.Pair = other;
                         other.Pair = this;
