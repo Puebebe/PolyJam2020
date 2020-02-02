@@ -9,7 +9,6 @@ public class SkarpetkasLayerer : MonoBehaviour
     public void LayerSkarpetkas(GameObject[] Skarpetkas = null, GameObject PrioritySkarpetka = null, bool forceUpdate = false)
     {
 
-        
 
         if (Skarpetkas == null)
         {
