@@ -91,6 +91,9 @@ public class SockGenerator : MonoBehaviour
             newSock.transform.SetParent(SockParent.transform);
             newPairedSock.transform.SetParent(SockParent.transform);
 
+            newSock.name = "Sock" + (result.Count / 2 + 1) + "A";
+            newPairedSock.name = "Sock" + (result.Count / 2 + 1) + "B";
+
             result.Add(newSock);
             result.Add(newPairedSock);
         }
