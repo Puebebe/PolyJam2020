@@ -1,4 +1,4 @@
-﻿//using System;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,11 +34,14 @@ public class SockGenerator : MonoBehaviour
         {
             //TODO select these at random
             Sprite SockShape = SockBaseList[0];
-            Color SockColor = ColorList[Random.Range(0, Mathf.Max(COLORS, ColorList.Count))];
+
+            List<Color> remaingColors = new List<Color>(ColorList);
+            Color SockColor = remaingColors[Random.Range(0, Mathf.Max(COLORS, remaingColors.Count))];
+            remaingColors.Remove(SockColor);
+            Color FeatureColor = remaingColors[Random.Range(0, Mathf.Max(COLORS, remaingColors.Count))];
+
             Sprite FeatureSprite = FeatureList[Random.Range(0, Mathf.Max(FEATURES, FeatureList.Count))];
             Pattern SockPattern = PatternList[Random.Range(0, Mathf.Max(PATTERNS, PatternList.Count))];
-            //TODO make sure not equal to sockcolor
-            Color FeatureColor = ColorList[Random.Range(0, Mathf.Max(COLORS, ColorList.Count))];
 
             GameObject newSock = new GameObject();
             newSock.SetActive(false);
