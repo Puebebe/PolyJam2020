@@ -1,4 +1,4 @@
-//using System;
+﻿//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,6 +90,9 @@ public class SockGenerator : MonoBehaviour
             //newSpriteMask.GetComponent<SpriteMask>().sprite = SockShape;
 
             GameObject newPairedSock = Instantiate(newSock);
+            GameObject betterNewSock = Instantiate(newSock);
+            Destroy(newSock);
+            newSock = betterNewSock;
 
             newSock.transform.SetParent(SockParent.transform);
             newPairedSock.transform.SetParent(SockParent.transform);
