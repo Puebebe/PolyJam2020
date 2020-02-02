@@ -3427,6 +3427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138b965f3e194d045b994ff801f71ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStateManager: {fileID: 181458818}
   Finder: {fileID: 877998512}
   Layerer: {fileID: 1538803548}
   PickReach: 3

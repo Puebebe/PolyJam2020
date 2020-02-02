@@ -218,22 +218,23 @@ public class SockFeature : MonoBehaviour
                 case FeatureType.multi:
                     {
                         if (FeatureColor != comparedFeature.FeatureColor) return false;
-                        if(SockFeaturePointmap.Count == comparedFeature.SockFeaturePointmap.Count)
+                        //if(SockFeaturePointmap.Count == comparedFeature.SockFeaturePointmap.Count)
+                        //{
+                        //    //HOW ARE YOU SORTING??
+                        //    /*
+                        //    //now this is useless because pointmaps are different for socks from the same pair
+                        //    SockFeaturePointmap.Sort();
+                        //    comparedFeature.SockFeaturePointmap.Sort();
+                        //    for (int i = 0; i < SockFeaturePointmap.Count; i++)
+                        //    {
+                        //        if (comparedFeature.SockFeaturePointmap[i] != SockFeaturePointmap[i]) return false;
+                        //    }
+                        //    */
+                            
+                        //}
+                        if (comparedFeature.FeatureSprite == FeatureSprite)
                         {
-                            //HOW ARE YOU SORTING??
-                            /*
-                            //now this is useless because pointmaps are different for socks from the same pair
-                            SockFeaturePointmap.Sort();
-                            comparedFeature.SockFeaturePointmap.Sort();
-                            for (int i = 0; i < SockFeaturePointmap.Count; i++)
-                            {
-                                if (comparedFeature.SockFeaturePointmap[i] != SockFeaturePointmap[i]) return false;
-                            }
-                            */
-                            if (comparedFeature.FeatureSprite == FeatureSprite)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         return false;
                     }

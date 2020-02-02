@@ -289,7 +289,7 @@ RectTransform:
   - {fileID: 702036927}
   - {fileID: 415004117}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -863,7 +863,7 @@ PrefabInstance:
     - target: {fileID: 6540419865445380861, guid: 99aea4dcab210334493421487cf06930,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6540419865445380861, guid: 99aea4dcab210334493421487cf06930,
         type: 3}
@@ -4157,7 +4157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1941899851
 MonoBehaviour:
@@ -4171,6 +4171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138b965f3e194d045b994ff801f71ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStateManager: {fileID: 181458818}
   Finder: {fileID: 877998512}
   Layerer: {fileID: 1538803548}
   PickReach: 3
@@ -4391,6 +4392,11 @@ PrefabInstance:
       propertyPath: sockGenerator
       value: 
       objectReference: {fileID: 1255974985}
+    - target: {fileID: 8181798722860795170, guid: b6a00c9501cef9d4498d38da935c8819,
+        type: 3}
+      propertyPath: skarpetkasFinder
+      value: 
+      objectReference: {fileID: 877998512}
     - target: {fileID: 8181798722860795171, guid: b6a00c9501cef9d4498d38da935c8819,
         type: 3}
       propertyPath: m_LocalPosition.x

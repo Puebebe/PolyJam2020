@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkarpetkasPile : MonoBehaviour
 {
+    [SerializeField] private SkarpetkasFinder skarpetkasFinder;
     [SerializeField] private SockGenerator sockGenerator;
     [SerializeField] private List<GameObject> Skarpetkas;
     //[SerializeField] private Transform SkarpetkasParent;
@@ -32,13 +33,62 @@ public class SkarpetkasPile : MonoBehaviour
         }
     }
 
-    /*
     public void RemovePairedSocks(Sock sock1, Sock sock2)
     {
-        Skarpetkas.Remove(sock1.gameObject);
-        Skarpetkas.Remove(sock2.gameObject);
+        Sock pairSock1, pairSock2;
+        pairSock1 = pairSock2 = null;
+
+        for (int i = 0; i < Skarpetkas.Count; i++)
+        {
+            if (Skarpetkas[i].GetComponent<Sock>().Equals(sock1))
+            {
+                pairSock1 = Skarpetkas[i].GetComponent<Sock>();
+                Debug.Log("pairSock1 found");
+            }
+            if (Skarpetkas[i].GetComponent<Sock>().Equals(sock2))
+            {
+                pairSock2 = Skarpetkas[i].GetComponent<Sock>();
+                Debug.Log("pairSock2 found");
+            }
+        }
+
+        if (pairSock1 != null)
+        {
+            Skarpetkas.Remove(pairSock1.gameObject);
+            Destroy(pairSock1.gameObject);
+        }
+        else
+        {
+            GameObject[] skarpetkaas = skarpetkasFinder.FindSkarpetkas();
+            if (skarpetkaas.Length == 0)
+                Debug.LogError("Finder found nothing");
+
+            for (int i = 0; i < skarpetkaas.Length; i++)
+            {
+                if (skarpetkaas[i].GetComponent<Sock>().Equals(sock1))
+                    pairSock1 = skarpetkaas[i].GetComponent<Sock>();
+            }
+            Destroy(pairSock1.gameObject);
+        }
+        if (pairSock2 != null)
+        {
+            Skarpetkas.Remove(pairSock2.gameObject);
+            Destroy(pairSock2.gameObject);
+        }
+        else
+        {
+            GameObject[] skarpetkaas = skarpetkasFinder.FindSkarpetkas();
+            if (skarpetkaas.Length == 0)
+                Debug.LogError("Finder found nothing");
+            for (int i = 0; i < skarpetkaas.Length; i++)
+            {
+                if (skarpetkaas[i].GetComponent<Sock>().Equals(sock2))
+                    pairSock2 = skarpetkaas[i].GetComponent<Sock>();
+            }
+
+            Destroy(pairSock2.gameObject);
+        }
     }
-    */
 
     public int SkarpetkasLeft
     {

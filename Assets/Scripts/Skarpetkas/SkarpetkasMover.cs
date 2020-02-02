@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class SkarpetkasMover : MonoBehaviour
 {
+    [SerializeField] private GameStateManager gameStateManager;
     [SerializeField] private SkarpetkasFinder Finder;
     [SerializeField] private SkarpetkasLayerer Layerer;
     [SerializeField] private float PickReach;
@@ -120,6 +121,8 @@ public class SkarpetkasMover : MonoBehaviour
 
     private IEnumerator MoveSkarpetka()
     {
+        //if (przegranko) return;
+
         while (Picked)
         {
             PickedController.MoveTo((Vector3)Input.InputToWorldPosition() + PickOffset);
@@ -171,21 +174,33 @@ public class SkarpetkasMover : MonoBehaviour
         if (firstSock.Equals(secondSock))
         {
             //TODO beautiful animation of successful paired socks
-            //Pile.RemovePairedSocks(firstSock, secondSock);
             Destroy(firstSock.gameObject);
             Destroy(secondSock.gameObject);
             CorrectInsertion.Invoke();
+
+            GameState.remainingSocksPairs--;
+
+            if (GameState.remainingSocksPairs <= 0)
+            {
+                //Win level
+                gameStateManager.victory();
+            }
         }
         else
         {
             //TODO animation of wrong paired socks
-            sock.MoveTo(StartPos);
+            //sock.MoveTo(StartPos);
+            Pile.RemovePairedSocks(firstSock, secondSock);
+            Destroy(firstSock.gameObject);
+            Destroy(secondSock.gameObject);
+
             WrongInsertion.Invoke();
-            GameState.remainingLifes--;
+            GameState.remainingLifes -= 2;
+            GameState.remainingSocksPairs -= 2;
 
             if (GameState.remainingLifes <= 0)
             {
-                //Game over
+                gameStateManager.GameOver();
             }
         }
     }

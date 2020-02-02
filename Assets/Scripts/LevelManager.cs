@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     private bool levelWasFailed = false;
 
 #if UNITY_EDITOR
-    public static float BasicTime { private set; get; } = 10;
+    public static float BasicTime { private set; get; } = 60;
 #else
     public static float BasicTime { private set; get; } = 60;
 #endif
@@ -47,10 +47,12 @@ public class LevelManager : MonoBehaviour
             levelWasFailed = true;
             timer.isOn = false;
             GameState.remainingLifes--;
-            
+            GetComponent<GameStateManager>().TimeUp();
+
             if (GameState.remainingLifes <= 0)
             {
                 //Game over
+                GetComponent<GameStateManager>().GameOver();
             }
         }
     }
