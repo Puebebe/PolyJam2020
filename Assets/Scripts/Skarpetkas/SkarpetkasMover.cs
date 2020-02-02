@@ -12,6 +12,7 @@ public class SkarpetkasMover : MonoBehaviour
     [SerializeField] private InputController Input;
     [SerializeField] private SkarpetkasPile Pile;
     [SerializeField] private Transform BasketPosition;
+    [SerializeField] private GameObject BigRegularSkarpetkaPrefab;
     public UnityEvent PickedSock;
     public UnityEvent DropedSock;
     public UnityEvent PairedSocks;
@@ -179,7 +180,33 @@ public class SkarpetkasMover : MonoBehaviour
         else
         {
             //TODO animation of wrong paired socks
-            sock.MoveTo(StartPos);
+            //sock.MoveTo(StartPos);
+            GameObject FirstBigSkarpetka = Instantiate(BigRegularSkarpetkaPrefab, firstSock.transform.position, Quaternion.identity, this.transform);
+            GameObject SecondBigSkarpetka = Instantiate(BigRegularSkarpetkaPrefab, secondSock.transform.position, Quaternion.identity, this.transform);
+
+            SpriteRenderer[] SROne = FirstBigSkarpetka.GetComponentsInChildren<SpriteRenderer>();
+            SpriteRenderer[] SRTwo = SecondBigSkarpetka.GetComponentsInChildren<SpriteRenderer>();
+            SpriteRenderer[] SROneOrg = firstSock.GetComponentsInChildren<SpriteRenderer>();
+            SpriteRenderer[] SRTwoOrg = secondSock.GetComponentsInChildren<SpriteRenderer>();
+
+            SROne[0].sortingOrder = 1;
+            SRTwo[0].sortingOrder = 1;
+
+            SROne[0].sprite = SROneOrg[0].sprite;
+            SROne[0].color = SROneOrg[0].color;
+            SROne[1].sprite = SROneOrg[1].sprite;
+            SROne[1].color = SROneOrg[1].color;
+
+            SRTwo[0].sprite = SRTwoOrg[0].sprite;
+            SRTwo[0].color = SRTwoOrg[0].color;
+            SRTwo[1].sprite = SRTwoOrg[1].sprite;
+            SRTwo[1].color = SRTwoOrg[1].color;
+
+            Debug.LogError("Remember to remove them from the pile");
+
+            Destroy(firstSock.gameObject);
+            Destroy(secondSock.gameObject);
+
             GameState.remainingLifes -= 2;
             WrongInsertion.Invoke();
         }

@@ -58,13 +58,26 @@ public class UIManager : MonoBehaviour
     {
         GameObject FirstLifeSock = LifeSocks[GameState.remainingLifes];
         GameObject SecondLifeSock = LifeSocks[GameState.remainingLifes + 1];
-        Vector3 FirstSockStart = Cam.ScreenToWorldPoint(CanvasToResolution(FirstLifeSock.transform.position));
-        Vector3 SecondSockStart = Cam.ScreenToWorldPoint(CanvasToResolution(SecondLifeSock.transform.position));
+
+        Vector3 FirstSockStart = Cam.ScreenToWorldPoint(CanvasToResolution( new Vector3(1920f, 1080f, 10f) - FirstLifeSock.transform.position));
+        Vector3 SecondSockStart = Cam.ScreenToWorldPoint(CanvasToResolution( new Vector3(1920f, 1080f, 10f)- SecondLifeSock.transform.position));
+
+        Debug.Log("FSS: " + FirstSockStart);
+        Debug.Log("SSS: " + SecondSockStart);
 
         GameObject FirstBigLifeSock = Instantiate(BigLifeSockPrefab, FirstSockStart,Quaternion.identity,this.transform);
-        GameObject SecondBigSock = Instantiate(BigLifeSockPrefab, SecondSockStart, Quaternion.identity, this.transform);
+        GameObject SecondBigLifeSock = Instantiate(BigLifeSockPrefab, SecondSockStart, Quaternion.identity, this.transform);
 
-        GameObject[] Skarpetkas = Finder.FindSkarpetkas(true);
+        GameObject[] BigRegularSocks = GameObject.FindGameObjectsWithTag("BigRegularSock");
+
+        FirstBigLifeSock.GetComponent<BigSkarpetkasController>().Appear(1f);
+        SecondBigLifeSock.GetComponent<BigSkarpetkasController>().Appear(1f);
+
+        BigRegularSocks[0].GetComponent<BigSkarpetkasController>().GoToAndDie(new Vector3(-6.25f, -2f,0f), 2f);
+        BigRegularSocks[1].GetComponent<BigSkarpetkasController>().GoToAndDie(new Vector3(-2f, -2f, 0f), 2f);
+
+        //FirstBigLifeSock.GetComponent<BigSkarpetkasController>().GoToAndDie(new Vector3(-6.25f, -2f, 0f), 2f);
+        //SecondBigLifeSock.GetComponent<BigSkarpetkasController>().GoToAndDie(new Vector3(-2f, -2f, 0f), 2f);
 
         RefreshLifeSocks();
     }
