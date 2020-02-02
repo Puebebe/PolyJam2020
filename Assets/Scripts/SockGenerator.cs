@@ -43,18 +43,15 @@ public class SockGenerator : MonoBehaviour
             GameObject newSock = new GameObject();
             newSock.transform.position = new Vector3(0, 0, 0);
 
-            newSock.AddComponent<SpriteRenderer>();
-            SpriteRenderer SockRenderer = newSock.GetComponent<SpriteRenderer>();
+            SpriteRenderer SockRenderer = newSock.AddComponent<SpriteRenderer>();
             SockRenderer.sprite = SockShape;
             SockRenderer.color = Color.white;
-            SockRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            SockRenderer.maskInteraction = SpriteMaskInteraction.None;
             SockRenderer.sortingOrder = 1;
-
-            newSock.AddComponent<Sock>();
-            Sock SockSock = newSock.GetComponent<Sock>();
-
-            newSock.AddComponent<SockFeature>();
-            SockFeature SockSockFeature = newSock.GetComponent<SockFeature>();
+          
+            Sock SockSock = newSock.AddComponent<Sock>();
+            
+            SockFeature SockSockFeature = newSock.AddComponent<SockFeature>();
             SockSockFeature.FeatureSprite = FeatureSprite;
 
             newSock.AddComponent<SkarpetkaController>();
@@ -72,9 +69,8 @@ public class SockGenerator : MonoBehaviour
 
             GameObject SockBase = new GameObject();
             SockBase.transform.position = new Vector3(0, 0, 0);
-
-            SockBase.AddComponent<SpriteRenderer>();
-            SpriteRenderer SockBaseRenderer = SockBase.GetComponent<SpriteRenderer>();
+         
+            SpriteRenderer SockBaseRenderer = SockBase.AddComponent<SpriteRenderer>();
 
             SockBase.transform.SetParent(newSock.transform);
             SockBaseRenderer.sprite = SockShape;
@@ -84,10 +80,10 @@ public class SockGenerator : MonoBehaviour
             SockSock.SockColor = SockColor;
             SockSock.SockBaseRenderer = SockBaseRenderer;
 
-            GameObject newSpriteMask = new GameObject();
-            newSpriteMask.AddComponent<SpriteMask>();
-            newSpriteMask.transform.SetParent(newSock.transform);
-            newSpriteMask.GetComponent<SpriteMask>().sprite = SockShape;
+            //GameObject newSpriteMask = new GameObject();
+            //newSpriteMask.AddComponent<SpriteMask>();
+            //newSpriteMask.transform.SetParent(newSock.transform);
+            //newSpriteMask.GetComponent<SpriteMask>().sprite = SockShape;
 
             GameObject newPairedSock = Instantiate(newSock);
 
