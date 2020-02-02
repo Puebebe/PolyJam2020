@@ -295,6 +295,16 @@ PrefabInstance:
       propertyPath: Cam
       value: 
       objectReference: {fileID: 1048160706}
+    - target: {fileID: 1503689839935076659, guid: b8c05f1aa447d414ca9f8f838c267aa2,
+        type: 3}
+      propertyPath: ParticlesMidPoint.x
+      value: 1744
+      objectReference: {fileID: 0}
+    - target: {fileID: 1503689839935076659, guid: b8c05f1aa447d414ca9f8f838c267aa2,
+        type: 3}
+      propertyPath: ParticlesMidPoint.y
+      value: 920
+      objectReference: {fileID: 0}
     - target: {fileID: 1503689839935076660, guid: b8c05f1aa447d414ca9f8f838c267aa2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1029,6 +1039,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3865588618992671562, guid: d7df623ae4f37634ea30efc62e9e54eb,
+        type: 3}
+      propertyPath: ForceModule.x.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3865588618992671562, guid: d7df623ae4f37634ea30efc62e9e54eb,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3865588618992671562, guid: d7df623ae4f37634ea30efc62e9e54eb,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7df623ae4f37634ea30efc62e9e54eb, type: 3}

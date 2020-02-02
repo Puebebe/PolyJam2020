@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image timerUI;
     [SerializeField] private ParticleSystem Particles;
     [SerializeField] private Vector3 ParticlesStartPos;
+    [SerializeField] private Vector3 ParticlesMidPoint;
     [SerializeField] private Vector3 ParticlesEndPos;
     [SerializeField] private Camera Cam;
 
@@ -20,9 +21,15 @@ public class UIManager : MonoBehaviour
             float progress = timer.RemainingTime / LevelManager.BasicTime;
             timerUI.fillAmount = progress;
 
-
-
-            Particles.transform.position = Vector3.Lerp(Cam.ScreenToWorldPoint(CanvasToResolution(ParticlesEndPos)), Cam.ScreenToWorldPoint(CanvasToResolution(ParticlesStartPos)), progress);
+            if (progress > 0.5f)
+            {
+                Particles.transform.position = Vector3.Lerp(Cam.ScreenToWorldPoint(CanvasToResolution(ParticlesMidPoint)), Cam.ScreenToWorldPoint(CanvasToResolution(ParticlesStartPos)), (progress - 0.5f) * 2f);
+            }
+            else
+            {
+                Particles.transform.position = Vector3.Lerp(Cam.ScreenToWorldPoint(CanvasToResolution(ParticlesEndPos)), Cam.ScreenToWorldPoint(CanvasToResolution(ParticlesMidPoint)), progress * 2f);
+            }
+            
             Particles.transform.position = new Vector3(Particles.transform.position.x, Particles.transform.position.y, 0f);
 
         }
