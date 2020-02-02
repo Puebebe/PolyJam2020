@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SkarpetkasMover : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class SkarpetkasMover : MonoBehaviour
     [SerializeField] private InputController Input;
     [SerializeField] private SkarpetkasPile Pile;
     [SerializeField] private Transform BasketPosition;
+    public UnityEvent PickedSock;
+    public UnityEvent DropedSock;
+    public UnityEvent PairedSocks;
+    public UnityEvent UnPairedSocks;
+    public UnityEvent CorrectInsertion;
+    public UnityEvent WrongInsertion;
     private Vector3 PickOffset = Vector3.zero;
     private GameObject PickedSkarpetka = null;
     private SkarpetkaController PickedController = null;
@@ -37,6 +44,10 @@ public class SkarpetkasMover : MonoBehaviour
                 closestController = Pile.SpawnSkarpetka(MousePos);
                 closestSkarpetka = closestController.transform;
             }
+            else
+            {
+                closestSkarpetka = closestController.transform;
+            }
         }
         else if (closestController != null && Vector3.Distance(closestController.transform.position, MousePos) <= PickReach)
         {
@@ -59,6 +70,7 @@ public class SkarpetkasMover : MonoBehaviour
             {
                 Layerer.LayerSkarpetkas(null, PickedSkarpetka, true);
             }
+            PickedSock.Invoke();
             StartCoroutine(MoveSkarpetka());
         }
     }
@@ -73,6 +85,7 @@ public class SkarpetkasMover : MonoBehaviour
                 if (PickedController.Pair == null)
                 {
                     PickedController.MoveTo(StartPos);
+                    WrongInsertion.Invoke();
                 }
                 else
                 {
@@ -84,7 +97,20 @@ public class SkarpetkasMover : MonoBehaviour
                 if (PickedController.Pair == null)
                 {
                     PickedController.AttemptPairing();
+                    if (PickedController.Pair == null)
+                    {
+                        DropedSock.Invoke();
+                    }
+                    else
+                    {
+                        PairedSocks.Invoke();
+                    }
                 }
+                else
+                {
+                    DropedSock.Invoke();
+                }
+                
             }
             
         }
@@ -122,6 +148,11 @@ public class SkarpetkasMover : MonoBehaviour
             if (Vector3.Distance(Closest.transform.position, MousePos) <= PickReach && ClosestController.Pair != null)
             {
                 ClosestController.AttemptToUnPair();
+
+                if (ClosestController.Pair == null)
+                {
+                    UnPairedSocks.Invoke();
+                }
             }
         }
     }
@@ -143,11 +174,13 @@ public class SkarpetkasMover : MonoBehaviour
             //Pile.RemovePairedSocks(firstSock, secondSock);
             Destroy(firstSock.gameObject);
             Destroy(secondSock.gameObject);
+            CorrectInsertion.Invoke();
         }
         else
         {
             //TODO animation of wrong paired socks
             sock.MoveTo(StartPos);
+            WrongInsertion.Invoke();
             //lifes--;
         }
     }
