@@ -182,6 +182,8 @@ public class SkarpetkasMover : MonoBehaviour
             sock.MoveTo(StartPos);
             WrongInsertion.Invoke();
             GameState.remainingLifes--;
+
+            if (GameState.remainingLifes <= 0)
             {
                 //Game over
             }
