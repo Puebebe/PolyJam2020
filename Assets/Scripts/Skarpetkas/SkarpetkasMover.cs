@@ -32,10 +32,8 @@ public class SkarpetkasMover : MonoBehaviour
 
         if (Pile.SkarpetkasLeft > 0 && Vector3.Distance(MousePos, Pile.transform.position) <= PickReach)
         {
-            //Debug.Log("Pile in range and has skarpetkas");
             if (closestController == null || Vector3.Distance(MousePos, closestController.transform.position) > Vector3.Distance(MousePos, Pile.transform.position))
             {
-                //Debug.Log("Mover wants skarpetka");
                 closestController = Pile.SpawnSkarpetka(MousePos);
                 closestSkarpetka = closestController.transform;
             }
@@ -51,8 +49,16 @@ public class SkarpetkasMover : MonoBehaviour
             PickedSkarpetka = closestSkarpetka.gameObject;
             PickedController = PickedSkarpetka.GetComponent<SkarpetkaController>();
             PickOffset = closestSkarpetka.position - MousePos;
-            Picked = true;
-            Layerer.LayerSkarpetkas(null, PickedSkarpetka, true);
+            Picked = true;           
+            if (closestController.Pair != null && closestController.Pair.GetComponent<SpriteRenderer>().sortingOrder > closestController.gameObject.GetComponent<SpriteRenderer>().sortingOrder)
+            {
+                Layerer.LayerSkarpetkas(null, PickedSkarpetka, true);
+                Layerer.LayerSkarpetkas(null,closestController.Pair.gameObject,false);
+            }
+            else
+            {
+                Layerer.LayerSkarpetkas(null, PickedSkarpetka, true);
+            }
             StartCoroutine(MoveSkarpetka());
         }
     }
