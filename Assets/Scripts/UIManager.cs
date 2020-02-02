@@ -12,6 +12,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Vector3 ParticlesMidPoint;
     [SerializeField] private Vector3 ParticlesEndPos;
     [SerializeField] private Camera Cam;
+    [SerializeField] private List<GameObject> lifesUI;
+
+    public void UpdateLifes(int amount)
+    {
+        foreach (var life in lifesUI)
+        {
+            life.SetActive(false);
+        }
+
+        for (int i = 0; i < amount; i++)
+        {
+            lifesUI[i].SetActive(true);
+        }
+    }
 
     // Update is called once per frame
     void Update()

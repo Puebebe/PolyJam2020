@@ -55,6 +55,7 @@ public class SkarpetkasPile : MonoBehaviour
         if (pairSock1 != null)
         {
             Skarpetkas.Remove(pairSock1.gameObject);
+            RemovedSkarpetkas++;
             Destroy(pairSock1.gameObject);
         }
         else
@@ -73,6 +74,7 @@ public class SkarpetkasPile : MonoBehaviour
         if (pairSock2 != null)
         {
             Skarpetkas.Remove(pairSock2.gameObject);
+            RemovedSkarpetkas++;
             Destroy(pairSock2.gameObject);
         }
         else
@@ -88,6 +90,8 @@ public class SkarpetkasPile : MonoBehaviour
 
             Destroy(pairSock2.gameObject);
         }
+
+        UpdateState();
     }
 
     public int SkarpetkasLeft

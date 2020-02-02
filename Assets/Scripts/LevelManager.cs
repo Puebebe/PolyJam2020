@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] Timer timer;
+    public UIManager uiManager;
 
     private bool levelWasFailed = false;
 
@@ -23,6 +24,7 @@ public class LevelManager : MonoBehaviour
         float multiplier = 0.8f;
         timer.RemainingTime = BasicTime * Mathf.Pow(multiplier, GameState.levelCompleted);
         timer.StartTimer();
+        GameState.remainingSocksPairs = GameState.socksPairsForLevel;
 
         Debug.Log("Time for level: " + timer.RemainingTime);
     }
@@ -47,6 +49,8 @@ public class LevelManager : MonoBehaviour
             levelWasFailed = true;
             timer.isOn = false;
             GameState.remainingLifes--;
+            uiManager.UpdateLifes(GameState.remainingLifes);
+
             GetComponent<GameStateManager>().TimeUp();
 
             if (GameState.remainingLifes <= 0)

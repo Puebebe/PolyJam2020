@@ -486,6 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 2095921976}
+  uiManager: {fileID: 857845413}
 --- !u!4 &181458817
 Transform:
   m_ObjectHideFlags: 0
@@ -896,6 +897,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1503689839935076659, guid: b8c05f1aa447d414ca9f8f838c267aa2,
         type: 3}
+      propertyPath: lifesUI.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1503689839935076659, guid: b8c05f1aa447d414ca9f8f838c267aa2,
+        type: 3}
       propertyPath: timer
       value: 
       objectReference: {fileID: 2095921976}
@@ -924,6 +930,31 @@ PrefabInstance:
       propertyPath: ParticlesMidPoint.y
       value: 920
       objectReference: {fileID: 0}
+    - target: {fileID: 1503689839935076659, guid: b8c05f1aa447d414ca9f8f838c267aa2,
+        type: 3}
+      propertyPath: lifesUI.Array.data[0]
+      value: 
+      objectReference: {fileID: 16112217}
+    - target: {fileID: 1503689839935076659, guid: b8c05f1aa447d414ca9f8f838c267aa2,
+        type: 3}
+      propertyPath: lifesUI.Array.data[1]
+      value: 
+      objectReference: {fileID: 865399063}
+    - target: {fileID: 1503689839935076659, guid: b8c05f1aa447d414ca9f8f838c267aa2,
+        type: 3}
+      propertyPath: lifesUI.Array.data[2]
+      value: 
+      objectReference: {fileID: 826049049}
+    - target: {fileID: 1503689839935076659, guid: b8c05f1aa447d414ca9f8f838c267aa2,
+        type: 3}
+      propertyPath: lifesUI.Array.data[3]
+      value: 
+      objectReference: {fileID: 1006734527}
+    - target: {fileID: 1503689839935076659, guid: b8c05f1aa447d414ca9f8f838c267aa2,
+        type: 3}
+      propertyPath: lifesUI.Array.data[4]
+      value: 
+      objectReference: {fileID: 855619600}
     - target: {fileID: 1503689839935076660, guid: b8c05f1aa447d414ca9f8f838c267aa2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1647,6 +1678,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855619600}
   m_CullTransparentMesh: 0
+--- !u!114 &857845413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1503689839935076659, guid: b8c05f1aa447d414ca9f8f838c267aa2,
+    type: 3}
+  m_PrefabInstance: {fileID: 554733712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee0258c605f53e4e9e5f954e928b233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &865399063
 GameObject:
   m_ObjectHideFlags: 0

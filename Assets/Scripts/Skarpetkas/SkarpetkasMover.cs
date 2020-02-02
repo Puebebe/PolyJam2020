@@ -196,6 +196,7 @@ public class SkarpetkasMover : MonoBehaviour
 
             WrongInsertion.Invoke();
             GameState.remainingLifes -= 2;
+            FindObjectOfType<UIManager>().UpdateLifes(GameState.remainingLifes);
             GameState.remainingSocksPairs -= 2;
 
             if (GameState.remainingLifes <= 0)

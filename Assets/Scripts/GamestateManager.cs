@@ -43,15 +43,18 @@ public class GameStateManager : MonoBehaviour
     {
         TimeUpCanvas.SetActive(false);
         Visuals.SetActive(true);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
     public void ButtonVictoryNext()
     {
+        if (GameState.remainingLifes < 5)
+            GameState.remainingLifes++;
         GameState.levelCompleted++;
         VictoryCanvas.SetActive(false);
         Visuals.SetActive(true);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+
     }
 
     public void ButtonMenuPress()
