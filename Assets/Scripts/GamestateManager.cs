@@ -9,6 +9,7 @@ public class GameStateManager : MonoBehaviour
     public GameObject TimeUpCanvas;
     public GameObject VictoryCanvas;
     public GameObject GameOverCanvas;
+    public Timer timer;
     //public Button TimeUpRetry;
     //public Button TimeUpMenu;
     //public Button GameOverRetry;
@@ -26,12 +27,14 @@ public class GameStateManager : MonoBehaviour
     {
         Visuals.SetActive(false);
         VictoryCanvas.SetActive(true);
+        timer.isOn = false;
     }
 
     public void GameOver()
     {
         GameOverCanvas.SetActive(true);
         Visuals.SetActive(false);
+        timer.isOn = false;
     }
     public void TimeUp()
     {

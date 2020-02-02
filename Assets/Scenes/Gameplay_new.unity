@@ -517,6 +517,7 @@ MonoBehaviour:
   TimeUpCanvas: {fileID: 1070376189}
   VictoryCanvas: {fileID: 740527911}
   GameOverCanvas: {fileID: 32066725}
+  timer: {fileID: 2095921976}
 --- !u!1 &365818390
 GameObject:
   m_ObjectHideFlags: 0
