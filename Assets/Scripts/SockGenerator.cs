@@ -41,6 +41,7 @@ public class SockGenerator : MonoBehaviour
             Color FeatureColor = ColorList[Random.Range(0, Mathf.Max(COLORS, ColorList.Count))];
 
             GameObject newSock = new GameObject();
+            newSock.SetActive(false);
             newSock.transform.position = new Vector3(0, 0, 0);
 
             SpriteRenderer SockRenderer = newSock.AddComponent<SpriteRenderer>();
