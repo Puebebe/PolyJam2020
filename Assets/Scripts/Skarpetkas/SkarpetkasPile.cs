@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class SkarpetkasPile : MonoBehaviour
 {
     [SerializeField] private SockGenerator sockGenerator;
-    [SerializeField] private List<GameObject> Skarpetkas;
+    [SerializeField] private GameObject[] Skarpetkas;
     [SerializeField] private Transform SkarpetkasParent;
     [SerializeField] private SpriteRenderer PileRenderer;
     [SerializeField] private Sprite[] PileStates;
@@ -31,34 +30,29 @@ public class SkarpetkasPile : MonoBehaviour
             return null;
         }
     }
-    public void RemovePairedSocks(Sock sock1, Sock sock2)
-    {
-        Skarpetkas.Remove(sock1.gameObject);
-        Skarpetkas.Remove(sock2.gameObject);
-    }
 
     public int SkarpetkasLeft
     {
         get
         {
-            return Skarpetkas.Count - nextSkarpetkaIndex;
+            return Skarpetkas.Length - nextSkarpetkaIndex;
         }
     }
 
     public void InitializePile(GameObject[] skarpetkas)
     {
-        Skarpetkas = skarpetkas.ToList();
+        Skarpetkas = skarpetkas;
         nextSkarpetkaIndex = 0;
         UpdateState();
     }
 
     private void UpdateState()
     {
-        float progress = (float)SkarpetkasLeft / (float)Skarpetkas.Count;
+        float progress = (float)SkarpetkasLeft / (float)Skarpetkas.Length;
         int chosenIndex = 0;
         for (int i = 0; i < PileStates.Length; i++)
         {
-            
+
             float scale = ((float)i - 1f) / ((float)PileStates.Length - 1f);
             //Debug.Log("P: " + progress + " S: " + scale);
             if (progress > scale)
@@ -74,7 +68,7 @@ public class SkarpetkasPile : MonoBehaviour
         {
             PileRenderer.sprite = PileStates[chosenIndex];
         }
-       
+
     }
 
     void Start()
