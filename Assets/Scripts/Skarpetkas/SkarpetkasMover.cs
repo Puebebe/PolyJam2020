@@ -181,7 +181,10 @@ public class SkarpetkasMover : MonoBehaviour
             //TODO animation of wrong paired socks
             sock.MoveTo(StartPos);
             WrongInsertion.Invoke();
-            //lifes--;
+            GameState.remainingLifes--;
+            {
+                //Game over
+            }
         }
     }
 

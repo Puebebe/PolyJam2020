@@ -81,6 +81,6 @@ public class SkarpetkasPile : MonoBehaviour
 
     void Start()
     {
-        InitializePile(sockGenerator.GenerateSockPile(5));
+        InitializePile(sockGenerator.GenerateSockPile(GameState.socksPairsForLevel));
     }
 }

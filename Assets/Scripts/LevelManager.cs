@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] Timer timer;
+
+    private bool levelWasFailed = false;
 
 #if UNITY_EDITOR
     public static float BasicTime { private set; get; } = 10;
@@ -13,7 +16,7 @@ public class LevelManager : MonoBehaviour
 #endif
 
     // Start is called before the first frame update
-    public void StartNextLevel()
+    public void StartLevel()
     {
         Debug.Log("Level number: " + (GameState.levelCompleted + 1));
 
@@ -26,21 +29,29 @@ public class LevelManager : MonoBehaviour
 
     public void ReplayLevel()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void Start()
     {
         //TODO move call StartNextLevel to button OnClick
-        StartNextLevel();
+        StartLevel();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer.RemainingTime < 0)
+        if (!levelWasFailed && timer.RemainingTime < 0)
         {
+            //Fail level
+            levelWasFailed = true;
             timer.isOn = false;
+            GameState.remainingLifes--;
+            
+            if (GameState.remainingLifes <= 0)
+            {
+                //Game over
+            }
         }
     }
 }
