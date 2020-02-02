@@ -5,22 +5,23 @@ using UnityEngine;
 public class SkarpetkasPile : MonoBehaviour
 {
     [SerializeField] private SockGenerator sockGenerator;
-    [SerializeField] private GameObject[] Skarpetkas;
-    [SerializeField] private Transform SkarpetkasParent;
+    [SerializeField] private List<GameObject> Skarpetkas;
+    //[SerializeField] private Transform SkarpetkasParent;
     [SerializeField] private SpriteRenderer PileRenderer;
     [SerializeField] private Sprite[] PileStates;
-    private int nextSkarpetkaIndex = 0;
+    private int RemovedSkarpetkas = 0;
 
     public SkarpetkaController SpawnSkarpetka(Vector3 pos)
     {
-        if (SkarpetkasLeft > 0)
+        if (Skarpetkas.Count > 0)
         {
-            GameObject skarpetka = Skarpetkas[nextSkarpetkaIndex];
+            GameObject skarpetka = Skarpetkas[0];
+            Skarpetkas.RemoveAt(0);
             skarpetka.transform.position = pos;
             skarpetka.SetActive(true);
             SkarpetkaController controller = skarpetka.GetComponent<SkarpetkaController>();
 
-            nextSkarpetkaIndex++;
+            RemovedSkarpetkas++;
             UpdateState();
             return controller;
         }
@@ -43,24 +44,24 @@ public class SkarpetkasPile : MonoBehaviour
     {
         get
         {
-            return Skarpetkas.Length - nextSkarpetkaIndex;
+            return (GameState.socksPairsForLevel * 2) - RemovedSkarpetkas;
         }
     }
 
     public void InitializePile(GameObject[] skarpetkas)
     {
-        Skarpetkas = skarpetkas;
-        nextSkarpetkaIndex = 0;
+        Skarpetkas = new List<GameObject>();
+        Skarpetkas.AddRange(skarpetkas);
+        RemovedSkarpetkas = 0;
         UpdateState();
     }
 
     private void UpdateState()
     {
-        float progress = (float)SkarpetkasLeft / (float)Skarpetkas.Length;
+        float progress = (float)SkarpetkasLeft / ((float)GameState.socksPairsForLevel * 2f);
         int chosenIndex = 0;
         for (int i = 0; i < PileStates.Length; i++)
         {
-
             float scale = ((float)i - 1f) / ((float)PileStates.Length - 1f);
             //Debug.Log("P: " + progress + " S: " + scale);
             if (progress > scale)
