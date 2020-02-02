@@ -133,11 +133,16 @@ public class SkarpetkasMover : MonoBehaviour
 
         if (firstSock.Equals(secondSock))
         {
-            Debug.Log("gites");
+            //TODO beautiful animation of successful paired socks
+            Pile.RemovePairedSocks(firstSock, secondSock);
+            Destroy(firstSock.gameObject);
+            Destroy(secondSock.gameObject);
         }
         else
         {
+            //TODO animation of wrong paired socks
             sock.MoveTo(StartPos);
+            //lifes--;
         }
     }
 
