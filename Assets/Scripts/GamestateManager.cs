@@ -72,7 +72,7 @@ public class GameStateManager : MonoBehaviour
     {
         GameOverCanvas.SetActive(false);
         Visuals.SetActive(true);
-        GameState.remainingLifes = 5;
+        GameState.ResetGameState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -10,4 +10,10 @@
         }   
     }
     public static int remainingSocksPairs = socksPairsForLevel;
+
+    public static void ResetGameState()
+    {
+        levelCompleted = 0;
+        remainingLifes = 5;
+    }
 }
