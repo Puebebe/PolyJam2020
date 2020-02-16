@@ -43,6 +43,7 @@ public class Menu : MonoBehaviour
     public void OnClickPlay()
     {
         SceneManager.LoadScene("Gameplay_new", LoadSceneMode.Single);
+        GameState.ResetGameState();
     }
     public void OnClickExit()
     {
