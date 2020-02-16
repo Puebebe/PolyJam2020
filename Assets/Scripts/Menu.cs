@@ -42,7 +42,7 @@ public class Menu : MonoBehaviour
     //}
     public void OnClickPlay()
     {
-        SceneManager.LoadScene("Gameplay", LoadSceneMode.Single);
+        SceneManager.LoadScene("Gameplay_new", LoadSceneMode.Single);
     }
     public void OnClickExit()
     {
