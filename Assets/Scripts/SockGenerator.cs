@@ -36,12 +36,12 @@ public class SockGenerator : MonoBehaviour
             Sprite SockShape = SockBaseList[0];
 
             List<Color> remaingColors = new List<Color>(ColorList);
-            Color SockColor = remaingColors[Random.Range(0, Mathf.Max(COLORS, remaingColors.Count))];
+            Color SockColor = remaingColors[Mathf.Clamp(Random.Range(0, COLORS), 0, remaingColors.Count - 1)];
             remaingColors.Remove(SockColor);
-            Color FeatureColor = remaingColors[Random.Range(0, Mathf.Max(COLORS, remaingColors.Count))];
+            Color FeatureColor = remaingColors[Mathf.Clamp(Random.Range(0, COLORS), 0, remaingColors.Count - 1)];
 
-            Sprite FeatureSprite = FeatureList[Random.Range(0, Mathf.Max(FEATURES, FeatureList.Count))];
-            Pattern SockPattern = PatternList[Random.Range(0, Mathf.Max(PATTERNS, PatternList.Count))];
+            Sprite FeatureSprite = FeatureList[Mathf.Clamp(Random.Range(0, FEATURES), 0, FeatureList.Count - 1)];
+            Pattern SockPattern = PatternList[Mathf.Clamp(Random.Range(0, PATTERNS), 0, PatternList.Count - 1)];
 
             GameObject newSock = new GameObject();
             newSock.SetActive(false);
@@ -69,7 +69,6 @@ public class SockGenerator : MonoBehaviour
             SockSockFeature.FeatureColor = FeatureColor;
 
             SockSockFeature.SetSockFeaturePointmap(SockPattern.points);
-            //PatternList[Random.Range(0, Mathf.Max(PatternList.Count, PATTERNS))];
 
             GameObject SockBase = new GameObject();
             SockBase.transform.position = new Vector3(0, 0, 0);
