@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     {
         if (timer.isOn)
         {
-            float progress = timer.RemainingTime / LevelManager.BasicTime;
+            float progress = timer.RemainingTime / LevelManager.TimeForLevel;
             timerUI.fillAmount = progress;
 
             if (progress > 0.5f)

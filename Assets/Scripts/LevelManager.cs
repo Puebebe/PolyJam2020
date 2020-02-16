@@ -9,12 +9,8 @@ public class LevelManager : MonoBehaviour
     public UIManager uiManager;
 
     private bool levelWasFailed = false;
-
-#if UNITY_EDITOR
-    public static float BasicTime { private set; get; } = 60;
-#else
-    public static float BasicTime { private set; get; } = 60;
-#endif
+    private const float BASIC_TIME = 60;
+    public static float TimeForLevel { private set; get; } = BASIC_TIME;
 
     // Start is called before the first frame update
     public void StartLevel()
@@ -22,11 +18,12 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Level number: " + (GameState.levelCompleted + 1));
 
         float multiplier = 0.8f;
-        timer.RemainingTime = BasicTime * Mathf.Pow(multiplier, GameState.levelCompleted);
+        timer.RemainingTime = BASIC_TIME * Mathf.Pow(multiplier, GameState.levelCompleted);
+        TimeForLevel = timer.RemainingTime;
         timer.StartTimer();
         GameState.remainingSocksPairs = GameState.socksPairsForLevel;
 
-        Debug.Log("Time for level: " + timer.RemainingTime);
+        Debug.Log("Time for level: " + TimeForLevel);
     }
 
     public void ReplayLevel()
