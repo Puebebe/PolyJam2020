@@ -25,7 +25,7 @@ public class LevelManager : MonoBehaviour
         GameState.remainingSocksPairs = GameState.socksPairsForLevel;
         uiManager.UpdateLifes(GameState.remainingLifes);
 
-        Debug.Log("Sock pairs: " + GameState.remainingSocksPairs);
+        Debug.Log("Socks pairs: " + GameState.remainingSocksPairs);
         Debug.Log("Time for level: " + TimeForLevel);
     }
 
@@ -51,13 +51,10 @@ public class LevelManager : MonoBehaviour
             GameState.remainingLifes--;
             uiManager.UpdateLifes(GameState.remainingLifes);
 
-            GetComponent<GameStateManager>().TimeUp();
-
             if (GameState.remainingLifes <= 0)
-            {
-                //Game over
                 GetComponent<GameStateManager>().GameOver();
-            }
+            else
+                GetComponent<GameStateManager>().TimeUp();
         }
     }
 }
