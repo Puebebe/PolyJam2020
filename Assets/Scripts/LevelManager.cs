@@ -21,8 +21,11 @@ public class LevelManager : MonoBehaviour
         timer.RemainingTime = BASIC_TIME * Mathf.Pow(multiplier, GameState.levelCompleted);
         TimeForLevel = timer.RemainingTime;
         timer.StartTimer();
-        GameState.remainingSocksPairs = GameState.socksPairsForLevel;
 
+        GameState.remainingSocksPairs = GameState.socksPairsForLevel;
+        uiManager.UpdateLifes(GameState.remainingLifes);
+
+        Debug.Log("Sock pairs: " + GameState.remainingSocksPairs);
         Debug.Log("Time for level: " + TimeForLevel);
     }
 
