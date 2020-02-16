@@ -27,6 +27,9 @@ public class SkarpetkasMover : MonoBehaviour
 
     public void AttemptToPickSkarpetka()
     {
+        if (!Pile.gameObject.activeInHierarchy)
+            return;
+
         Vector3 MousePos = Input.InputToWorldPosition();
         
         Transform closestSkarpetka = null;
@@ -121,8 +124,6 @@ public class SkarpetkasMover : MonoBehaviour
 
     private IEnumerator MoveSkarpetka()
     {
-        //if (przegranko) return;
-
         while (Picked)
         {
             PickedController.MoveTo((Vector3)Input.InputToWorldPosition() + PickOffset);

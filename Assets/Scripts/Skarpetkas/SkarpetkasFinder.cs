@@ -40,7 +40,7 @@ public class SkarpetkasFinder : MonoBehaviour
             {
                 Transform skarpetka = Skarpetkas[i].transform;
 
-                if (!skarpetka.gameObject.activeSelf)
+                if (!skarpetka.gameObject.activeInHierarchy)
                     continue;
 
                 float distance = Vector3.Distance(skarpetka.position, position);
